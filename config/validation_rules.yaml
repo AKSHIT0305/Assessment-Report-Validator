@@ -1,0 +1,19 @@
+# Canonical validation rules will be populated from the supplied workbooks.
+# Keep business rules configurable where practical.
+workbook:
+  required_sheets:
+    - score_sheet
+    - Batch Analysis - Tabular
+    - Batch Analysis - Graph
+
+scores:
+  min: 0
+  max: 100
+
+pc_classification:
+  weak: "<50"
+  moderately_weak: "50-70"
+  strong: ">70"
+
+assessor_database:
+  enabled: false

@@ -1,0 +1,175 @@
+class TemplateDetector:
+    """
+    Detects the assessment report template based on
+    worksheet names and workbook structure.
+    """
+
+    TEMPLATE_STANDARD = "STANDARD"
+    TEMPLATE_ALTERNATE_SCORE = "ALTERNATE_SCORE"
+    TEMPLATE_LEGACY_RESULT = "LEGACY_RESULT"
+
+    def detect(self, workbook):
+
+        sheets = set(workbook.sheetnames)
+
+        # --------------------------------------------------
+        # Legacy Result / PC-Wise template
+        # --------------------------------------------------
+
+        if {
+            "Result",
+            "Analysis-Tabular",
+            "Analysis - Graph",
+        }.issubset(sheets):
+
+            return self.TEMPLATE_LEGACY_RESULT
+
+        # --------------------------------------------------
+        # score_sheet based templates
+        # --------------------------------------------------
+
+        if "score_sheet" not in sheets:
+            return None
+
+        score_ws = workbook["score_sheet"]
+
+        # --------------------------------------------------
+        # Alternate layout
+        # --------------------------------------------------
+
+        header_row = self._find_candidate_header_row(
+            score_ws
+        )
+
+        if header_row is None:
+            return None
+
+        headers = self._get_headers(
+            score_ws,
+            header_row
+        )
+
+        # Alternate template commonly uses
+        # Batch ID + Gender + Assessment Date.
+        has_batch_id = any(
+            header in {
+                "batch id",
+                "batchid",
+            }
+            for header in headers
+        )
+
+        has_candidate_id = any(
+            header in {
+                "candidate id",
+                "candidateid",
+            }
+            for header in headers
+        )
+
+        has_gender = "gender" in headers
+        has_assessment_date = (
+            "assessment date" in headers
+            or "assessmentdate" in headers
+        )
+
+        if (
+            has_batch_id
+            and has_candidate_id
+            and has_gender
+            and has_assessment_date
+        ):
+
+            # If the metadata layout starts at row 1,
+            # classify as alternate.
+            if score_ws["A1"].value is not None:
+                return self.TEMPLATE_ALTERNATE_SCORE
+
+            return self.TEMPLATE_STANDARD
+
+        # --------------------------------------------------
+        # Standard template
+        # --------------------------------------------------
+
+        if (
+            has_batch_id
+            and has_candidate_id
+        ):
+            return self.TEMPLATE_STANDARD
+
+        return None
+
+    # ======================================================
+    # Helpers
+    # ======================================================
+
+    def _find_candidate_header_row(self, ws):
+
+        for row in range(
+            1,
+            ws.max_row + 1
+        ):
+
+            for column in range(
+                1,
+                ws.max_column + 1
+            ):
+
+                value = ws.cell(
+                    row,
+                    column
+                ).value
+
+                if value is None:
+                    continue
+
+                normalized = self._normalize(
+                    value
+                )
+
+                if normalized in {
+                    "candidate id",
+                    "candidateid",
+                }:
+                    return row
+
+        return None
+
+    def _get_headers(
+        self,
+        ws,
+        row
+    ):
+
+        headers = []
+
+        for column in range(
+            1,
+            ws.max_column + 1
+        ):
+
+            value = ws.cell(
+                row,
+                column
+            ).value
+
+            if value is None:
+                continue
+
+            headers.append(
+                self._normalize(value)
+            )
+
+        return headers
+
+    @staticmethod
+    def _normalize(value):
+
+        return " ".join(
+            str(value)
+            .strip()
+            .lower()
+            .replace("_", " ")
+            .replace("-", " ")
+            .split()
+        )

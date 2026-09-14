@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+dist/
+.env
+data/incoming/*
+data/processed/*
+data/reports/*
+data/logs/*
+!data/incoming/.gitkeep
+!data/processed/.gitkeep
+!data/reports/.gitkeep
+!data/logs/.gitkeep

@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+python-multipart
+openpyxl>=3.1.5
+pandas
+pydantic
+pyyaml
+python-dotenv
