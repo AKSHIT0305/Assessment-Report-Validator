@@ -218,6 +218,7 @@ class DataValidator:
                 "n/a",
                 "na",
                 "n.a.",
+                "-",  # Treat "-" as missing/unknown gender
             }
 
             for row in candidate_rows:

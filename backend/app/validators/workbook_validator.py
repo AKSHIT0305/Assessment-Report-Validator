@@ -103,11 +103,17 @@ class WorkbookValidator:
 
             worksheet = workbook[sheet_name]
 
-            if (
-                worksheet.max_row == 1
-                and worksheet.max_column == 1
-                and worksheet["A1"].value is None
-            ):
+            # Check if worksheet is truly empty by examining all cells
+            has_content = False
+            for row in range(1, worksheet.max_row + 1):
+                for col in range(1, worksheet.max_column + 1):
+                    if worksheet.cell(row, col).value is not None:
+                        has_content = True
+                        break
+                if has_content:
+                    break
+            
+            if not has_content:
 
                 # Graph sheets are allowed to be empty.
                 if "Graph" in sheet_name:
@@ -121,7 +127,7 @@ class WorkbookValidator:
                         "is empty."
                     ),
                     "sheet": sheet_name,
-                    "cell": "A1",
+                    "cell": None,
                     "expected": "Populated worksheet",
                     "actual": "Empty",
                 })

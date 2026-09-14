@@ -42,6 +42,8 @@ class CrossSheetValidator:
         # --------------------------------------------------
         # Batch ID
         # --------------------------------------------------
+        # Business rule: B3 in Tabular sheet contains the Batch ID
+        # for the current ALTERNATE_SCORE template.
 
         batch_id = score_ws.cell(
             candidate_rows[0],
@@ -50,7 +52,8 @@ class CrossSheetValidator:
 
         tabular_batch_id = self._resolve_formula(
             tabular_ws["B3"].value,
-            workbook
+            workbook,
+            max_depth=5
         )
 
         # If B3 is actually a label/header, don't compare it.
@@ -86,9 +89,16 @@ class CrossSheetValidator:
             score_ws
         )
 
+        # Find NOS section start row dynamically
+        nos_start_row = self._find_nos_start_row(tabular_ws)
+        
+        if nos_start_row is None:
+            # Can't validate NOS names without knowing where they start
+            return
+
         for index, expected_nos in enumerate(
             score_nos,
-            start=13
+            start=nos_start_row
         ):
 
             actual_nos = tabular_ws.cell(
@@ -98,7 +108,8 @@ class CrossSheetValidator:
 
             actual_nos = self._resolve_formula(
                 actual_nos,
-                workbook
+                workbook,
+                max_depth=3
             )
 
             if actual_nos is None:
@@ -208,13 +219,19 @@ class CrossSheetValidator:
 
         nos_list = []
 
+        # Find the header row dynamically
+        header_row = self._find_header_row(ws)
+        
+        if header_row is None:
+            return []
+
         for column in range(
             1,
             ws.max_column + 1
         ):
 
             header = ws.cell(
-                12,
+                header_row,
                 column
             ).value
 
@@ -229,13 +246,18 @@ class CrossSheetValidator:
 
             header = header.strip()
 
+            # Handle different score header patterns
             if " - Score" in header:
-
                 nos = header.split(
                     " - Score",
                     1
                 )[0].strip()
-
+                nos_list.append(nos)
+            elif "-Score" in header:
+                nos = header.split(
+                    "-Score",
+                    1
+                )[0].strip()
                 nos_list.append(nos)
 
         return nos_list
@@ -243,9 +265,30 @@ class CrossSheetValidator:
     def _resolve_formula(
         self,
         value,
-        workbook
+        workbook,
+        max_depth=5,
+        visited=None
     ):
-
+        """
+        Resolve Excel cell references recursively.
+        
+        Handles chained references like:
+        - Tabular B3 -> score_sheet!B9
+        - score_sheet B9 -> A13
+        - A13 -> actual value
+        
+        Args:
+            value: The cell value to resolve
+            workbook: The workbook object
+            max_depth: Maximum recursion depth to prevent infinite loops
+            visited: Set of already visited cell references to prevent cycles
+        """
+        if visited is None:
+            visited = set()
+        
+        if max_depth <= 0:
+            return value
+        
         if not isinstance(
             value,
             str
@@ -257,24 +300,42 @@ class CrossSheetValidator:
 
         formula = value[1:].strip()
 
-        if "!" not in formula:
+        # Handle both cross-sheet references (sheet!cell) and same-sheet references (cell)
+        if "!" in formula:
+            sheet_name, cell_ref = formula.split(
+                "!",
+                1
+            )
+            sheet_name = sheet_name.strip("'")
+            
+            # Prevent cycles
+            reference_key = f"{sheet_name}!{cell_ref}"
+            if reference_key in visited:
+                return value
+            visited.add(reference_key)
+
+            if sheet_name not in workbook.sheetnames:
+                return value
+
+            resolved_value = workbook[
+                sheet_name
+            ][cell_ref].value
+        else:
+            # Same-sheet reference - assume current sheet context
+            # For this implementation, we can't resolve same-sheet references
+            # without knowing the current sheet, so return as-is
             return value
-
-        sheet_name, cell_ref = formula.split(
-            "!",
-            1
-        )
-
-        sheet_name = sheet_name.strip(
-            "'"
-        )
-
-        if sheet_name not in workbook.sheetnames:
-            return value
-
-        return workbook[
-            sheet_name
-        ][cell_ref].value
+        
+        # Recursively resolve if the resolved value is also a formula
+        if isinstance(resolved_value, str) and resolved_value.startswith("="):
+            return self._resolve_formula(
+                resolved_value,
+                workbook,
+                max_depth - 1,
+                visited
+            )
+        
+        return resolved_value
 
     def _looks_like_header(
         self,
@@ -296,3 +357,50 @@ class CrossSheetValidator:
             }
 
         return False
+
+    def _find_header_row(self, ws):
+        """Find the row containing 'Candidate ID' header."""
+        for row in range(1, ws.max_row + 1):
+            for column in range(1, ws.max_column + 1):
+                value = ws.cell(row, column).value
+                if value is None:
+                    continue
+                normalized = (
+                    str(value)
+                    .strip()
+                    .lower()
+                    .replace("_", " ")
+                )
+                if normalized in {"candidate id", "candidateid"}:
+                    return row
+        return None
+
+    def _find_nos_start_row(self, tabular_ws):
+        """Find the row where NOS statistics begin in Tabular sheet."""
+        # Look for NOS SUMMARY header or first NOS code
+        nos_summary_row = None
+        first_nos_code_row = None
+        
+        for row in range(1, min(tabular_ws.max_row, 30) + 1):
+            value = tabular_ws.cell(row, 1).value
+            if value is None:
+                continue
+            cell_value = str(value).strip()
+            # Check for NOS SUMMARY header
+            if "NOS SUMMARY" in cell_value.upper():
+                nos_summary_row = row
+            # Check for actual NOS codes (SSC/, MEP/, DGT/, etc.)
+            if any(prefix in cell_value.upper() for prefix in ["SSC/", "MEP/", "DGT/", "TEL/"]):
+                first_nos_code_row = row
+                break  # Found first actual NOS code, stop searching
+        
+        # If we found actual NOS codes, that's the start row
+        if first_nos_code_row:
+            return first_nos_code_row
+        
+        # If we only found NOS SUMMARY header, NOS data typically starts 2 rows after
+        # (row + 1 is usually headers, row + 2 is data)
+        if nos_summary_row:
+            return nos_summary_row + 2
+        
+        return None

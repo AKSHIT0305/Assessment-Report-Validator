@@ -58,6 +58,7 @@ def get_score_columns(ws):
             if (
                 "score" in normalized
                 or _extract_score_from_header(value) is not None
+                or _is_score_header_pattern(value)
             ):
                 score_header_count += 1
 
@@ -165,12 +166,22 @@ def get_score_columns(ws):
             score_header
         ).strip()
 
+        # Handle different score header patterns
         if " - Score" in nos:
-
             nos = nos.split(
                 " - Score",
                 1
             )[0].strip()
+        elif "-Score" in nos:
+            nos = nos.split(
+                "-Score",
+                1
+            )[0].strip()
+        elif _is_score_header_pattern(nos):
+            # Extract NOS from pattern like "SSC/N2204-100.0"
+            # Remove the score part at the end
+            if "-" in nos:
+                nos = nos.rsplit("-", 1)[0].strip()
 
         # Handle multiline headers.
         nos = nos.split(
@@ -196,6 +207,8 @@ def _extract_score_from_header(header):
     SSC/N8417 - Score 100
     SSC/N8417 - Score
     100
+    SSC/N2204-100.0
+    SSC/N2204-100
     """
 
     if header is None:
@@ -207,22 +220,20 @@ def _extract_score_from_header(header):
     ):
         return None
 
-    # Only extract a score when the header looks like
-    # an actual score header.
-    if "score" not in header.lower():
-        return None
+    # First try the traditional "score" word pattern
+    if "score" in header.lower():
+        matches = re.findall(
+            r"(\d+(?:\.\d+)?)",
+            header
+        )
 
-    matches = re.findall(
-        r"(\d+(?:\.\d+)?)",
-        header
-    )
-
-    if not matches:
-        return None
-
-    return float(
-        matches[-1]
-    )
+        if matches:
+            return float(
+                matches[-1]
+            )
+    
+    # If no "score" word, try the pattern approach
+    return _extract_score_from_pattern(header)
 
 
 def _extract_score_from_formula(formula):
@@ -256,3 +267,53 @@ def _extract_score_from_formula(formula):
     return float(
         match.group(1)
     )
+
+
+def _is_score_header_pattern(header):
+    """
+    Identify score header patterns that don't contain "score" word.
+    
+    Recognizes patterns like:
+    - SSC/N2204-100.0
+    - SSC/N2204-100
+    - MEP/N2601-50
+    
+    These follow the pattern: PREFIX/NUMBER-SCORE
+    """
+    if header is None:
+        return False
+    
+    if not isinstance(header, str):
+        return False
+    
+    # Check for pattern like "SSC/N2204-100.0" or "SSC/N2204-100"
+    # Pattern: letters/letters-numbers dash number
+    pattern = r'^[A-Z]+/[A-Z0-9]+-\d+(?:\.\d+)?$'
+    
+    if re.match(pattern, header.strip(), re.IGNORECASE):
+        return True
+    
+    return False
+
+
+def _extract_score_from_pattern(header):
+    """
+    Extract maximum score from pattern headers like:
+    - SSC/N2204-100.0
+    - SSC/N2204-100
+    - MEP/N2601-50
+    """
+    if header is None:
+        return None
+    
+    if not isinstance(header, str):
+        return None
+    
+    # Extract the number after the final dash
+    # Pattern: something-123 or something-123.45
+    match = re.search(r'-(\d+(?:\.\d+)?)$', header.strip())
+    
+    if match:
+        return float(match.group(1))
+    
+    return None

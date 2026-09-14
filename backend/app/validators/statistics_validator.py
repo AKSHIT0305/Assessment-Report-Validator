@@ -126,9 +126,16 @@ class StatisticsValidator:
         # NOS statistics
         # --------------------------------------------------
 
+        # Find NOS section start row dynamically
+        nos_start_row = self._find_nos_start_row(tabular_ws)
+        
+        if nos_start_row is None:
+            # Can't validate NOS statistics without knowing where they start
+            return
+
         for tabular_row, info in enumerate(
             score_columns,
-            start=13
+            start=nos_start_row
         ):
 
             score_col = info["score_column"]
@@ -245,6 +252,8 @@ class StatisticsValidator:
         # --------------------------------------------------
         # Batch totals
         # --------------------------------------------------
+        # Business rule: C8, C9, C10, F8, G8 are template-specific
+        # summary cell positions for the current ALTERNATE_SCORE template.
 
         self._check_number(
             tabular_ws,
@@ -425,3 +434,33 @@ class StatisticsValidator:
                     6
                 ),
             })
+
+    def _find_nos_start_row(self, tabular_ws):
+        """Find the row where NOS statistics begin in Tabular sheet."""
+        # Look for NOS SUMMARY header or first NOS code
+        nos_summary_row = None
+        first_nos_code_row = None
+        
+        for row in range(1, min(tabular_ws.max_row, 30) + 1):
+            value = tabular_ws.cell(row, 1).value
+            if value is None:
+                continue
+            cell_value = str(value).strip()
+            # Check for NOS SUMMARY header
+            if "NOS SUMMARY" in cell_value.upper():
+                nos_summary_row = row
+            # Check for actual NOS codes (SSC/, MEP/, DGT/, etc.)
+            if any(prefix in cell_value.upper() for prefix in ["SSC/", "MEP/", "DGT/", "TEL/"]):
+                first_nos_code_row = row
+                break  # Found first actual NOS code, stop searching
+        
+        # If we found actual NOS codes, that's the start row
+        if first_nos_code_row:
+            return first_nos_code_row
+        
+        # If we only found NOS SUMMARY header, NOS data typically starts 2 rows after
+        # (row + 1 is usually headers, row + 2 is data)
+        if nos_summary_row:
+            return nos_summary_row + 2
+        
+        return None

@@ -82,7 +82,17 @@ class TemplateDetector:
 
             # If the metadata layout starts at row 1,
             # classify as alternate.
-            if score_ws["A1"].value is not None:
+            # Check if there's content in the first few rows before the header
+            has_metadata = False
+            for row in range(1, header_row):
+                for col in range(1, min(score_ws.max_column + 1, 5)):
+                    if score_ws.cell(row, col).value is not None:
+                        has_metadata = True
+                        break
+                if has_metadata:
+                    break
+            
+            if has_metadata:
                 return self.TEMPLATE_ALTERNATE_SCORE
 
             return self.TEMPLATE_STANDARD
