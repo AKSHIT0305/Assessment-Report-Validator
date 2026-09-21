@@ -1,4 +1,7 @@
 from backend.app.utils.score_utils import get_score_columns
+from backend.app.utils.sheet_mapper import SheetMapper
+from backend.app.utils.workbook_analyzer import WorkbookAnalyzer
+from backend.app.utils.calculation_verifier import CalculationVerifier
 
 
 class FormulaValidator:
@@ -11,10 +14,27 @@ class FormulaValidator:
     - Metadata cells may be hardcoded or formula-driven depending on template.
     """
 
-    def validate(self, workbook, issues):
-
-        score_ws = workbook["score_sheet"]
-        tabular_ws = workbook["Batch Analysis - Tabular"]
+    def validate(self, workbook, issues, sheet_mapping=None, template=None):
+        
+        # Resolve sheet names using sheet mapping
+        if sheet_mapping:
+            primary_sheet_name = sheet_mapping.get("PRIMARY_DATA_SHEET")
+            tabular_sheet_name = sheet_mapping.get("TABULAR_ANALYSIS_SHEET")
+        else:
+            # Fallback to dynamic detection
+            primary_sheet_name = SheetMapper.identify_primary_data_sheet(workbook)
+            tabular_sheet_name = SheetMapper.identify_tabular_analysis_sheet(workbook)
+        
+        if primary_sheet_name is None or primary_sheet_name not in workbook.sheetnames:
+            # Cannot validate without primary sheet
+            return
+        
+        score_ws = workbook[primary_sheet_name]
+        
+        # Tabular sheet is optional
+        tabular_ws = None
+        if tabular_sheet_name and tabular_sheet_name in workbook.sheetnames:
+            tabular_ws = workbook[tabular_sheet_name]
 
         score_columns = get_score_columns(score_ws)
 
@@ -80,7 +100,7 @@ class FormulaValidator:
 
                     formula = pass_fail_cell.value
 
-                    # Pass/Fail column must contain a formula.
+                    # Pass/Fail column may contain a formula OR a hardcoded value
                     # Check for string formulas or ArrayFormula objects
                     is_formula = False
                     
@@ -91,56 +111,125 @@ class FormulaValidator:
                     elif hasattr(formula, '__class__') and 'ArrayFormula' in str(formula.__class__):
                         is_formula = True
 
-                    if not is_formula:
+                    if is_formula:
+                        # --------------------------------------------------
+                        # Formula should reference corresponding score cell
+                        # --------------------------------------------------
 
-                        issues.append({
-                            "code": "MISSING_PASS_FAIL_FORMULA",
-                            "category": "Formula",
-                            "message": (
-                                "Expected Pass/Fail formula is missing."
-                            ),
-                            "sheet": "score_sheet",
-                            "cell": pass_fail_cell.coordinate,
-                            "expected": "Excel formula",
-                            "actual": formula,
-                        })
+                        score_reference = score_cell.coordinate
 
-                        continue
+                        # Extract formula text from ArrayFormula objects if needed
+                        formula_text = formula
+                        if hasattr(formula, 'text'):
+                            formula_text = formula.text
+                        elif hasattr(formula, '__class__') and 'ArrayFormula' in str(formula.__class__):
+                            # For ArrayFormula, try to get the formula text
+                            formula_text = str(formula)  # fallback to string representation
 
-                    # --------------------------------------------------
-                    # Formula should reference corresponding score cell
-                    # --------------------------------------------------
+                        normalized_formula = str(formula_text).upper()
+                        normalized_reference = score_reference.upper()
 
-                    score_reference = score_cell.coordinate
+                        if normalized_reference not in normalized_formula:
 
-                    # Extract formula text from ArrayFormula objects if needed
-                    formula_text = formula
-                    if hasattr(formula, 'text'):
-                        formula_text = formula.text
-                    elif hasattr(formula, '__class__') and 'ArrayFormula' in str(formula.__class__):
-                        # For ArrayFormula, try to get the formula text
-                        formula_text = str(formula)  # fallback to string representation
-
-                    normalized_formula = str(formula_text).upper()
-                    normalized_reference = score_reference.upper()
-
-                    if normalized_reference not in normalized_formula:
-
-                        issues.append({
-                            "code": "PASS_FAIL_FORMULA_REFERENCE_ERROR",
-                            "category": "Formula",
-                            "message": (
-                                "Pass/Fail formula does not reference "
-                                "its corresponding score cell."
-                            ),
-                            "sheet": "score_sheet",
-                            "cell": pass_fail_cell.coordinate,
-                            "expected": score_reference,
-                            "actual": formula,
-                        })
+                            issues.append({
+                                "code": "PASS_FAIL_FORMULA_REFERENCE_ERROR",
+                                "category": "Formula",
+                                "message": (
+                                    "Pass/Fail formula does not reference "
+                                    "its corresponding score cell."
+                                ),
+                                "sheet": primary_sheet_name,
+                                "cell": pass_fail_cell.coordinate,
+                                "expected": score_reference,
+                                "actual": formula,
+                            })
+                    else:
+                        # Hardcoded value - verify against score and pass criteria
+                        score_value = score_cell.value
+                        max_score = info["max_score"]
+                        
+                        # Detect pass criteria from workbook
+                        pass_criteria = WorkbookAnalyzer.detect_pass_criteria(score_ws)
+                        if pass_criteria is None:
+                            # Per confirmed validation rules: Do not assume 80% pass threshold
+                            # if the workbook's actual criteria can be detected. If criteria
+                            # cannot be reliably determined, mark REVIEW.
+                            issues.append({
+                                "code": "HARDCODED_PASS_FAIL_REVIEW",
+                                "category": "Formula",
+                                "message": (
+                                    "Hardcoded Pass/Fail value cannot be verified "
+                                    "because pass criteria could not be reliably detected. "
+                                    "Manual review required."
+                                ),
+                                "sheet": primary_sheet_name,
+                                "cell": pass_fail_cell.coordinate,
+                                "expected": "Depends on pass criteria",
+                                "actual": formula,
+                                "severity": "REVIEW",
+                            })
+                            continue
+                        
+                        # Determine expected Pass/Fail based on score
+                        if score_value is not None and isinstance(score_value, (int, float)):
+                            expected_pass = score_value >= (max_score * pass_criteria)
+                        else:
+                            # Cannot verify without score value
+                            issues.append({
+                                "code": "HARDCODED_PASS_FAIL_REVIEW",
+                                "category": "Formula",
+                                "message": (
+                                    "Hardcoded Pass/Fail value cannot be verified "
+                                    "because score value is missing or invalid."
+                                ),
+                                "sheet": primary_sheet_name,
+                                "cell": pass_fail_cell.coordinate,
+                                "expected": "Depends on score value",
+                                "actual": formula,
+                                "severity": "REVIEW",
+                            })
+                            continue
+                        
+                        # Normalize the hardcoded value
+                        normalized_value = str(formula).strip().lower()
+                        actual_pass = normalized_value in {"pass", "p", "yes", "y", "1", "true"}
+                        actual_fail = normalized_value in {"fail", "f", "no", "n", "0", "false"}
+                        
+                        if not (actual_pass or actual_fail):
+                            # Invalid Pass/Fail value
+                            issues.append({
+                                "code": "INVALID_PASS_FAIL_VALUE",
+                                "category": "Formula",
+                                "message": (
+                                    "Hardcoded Pass/Fail value is not a valid "
+                                    "Pass/Fail indicator."
+                                ),
+                                "sheet": primary_sheet_name,
+                                "cell": pass_fail_cell.coordinate,
+                                "expected": "Pass or Fail",
+                                "actual": formula,
+                            })
+                            continue
+                        
+                        # Verify if hardcoded value matches expected
+                        if actual_pass != expected_pass:
+                            issues.append({
+                                "code": "HARDCODED_PASS_FAIL_MISMATCH",
+                                "category": "Formula",
+                                "message": (
+                                    f"Hardcoded Pass/Fail value does not match "
+                                    f"expected result based on score "
+                                    f"({score_value}/{max_score}, pass criteria: {pass_criteria*100}%)."
+                                ),
+                                "sheet": primary_sheet_name,
+                                "cell": pass_fail_cell.coordinate,
+                                "expected": "Pass" if expected_pass else "Fail",
+                                "actual": formula,
+                            })
+                        # If it matches, accept it as valid (no error)
 
         # --------------------------------------------------
-        # Batch Analysis - Tabular
+        # Batch Analysis - Tabular (optional)
         # --------------------------------------------------
         #
         # Dynamic summary cell detection: Locate summary cells
@@ -149,13 +238,25 @@ class FormulaValidator:
         # have to be located at fixed cells.
         # --------------------------------------------------
 
-        # Dynamically locate summary cells
-        summary_cells = self._find_summary_cells(tabular_ws)
+        if tabular_ws is None:
+            # Tabular sheet is optional - skip validation
+            return
 
-        # Check if this is a BSDM template variation (hardcoded values accepted)
+        # Dynamically locate summary cells using WorkbookAnalyzer
+        summary_cells_dict = WorkbookAnalyzer.find_summary_section(tabular_ws)
+        
+        # Convert dictionary format to list format for compatibility
+        summary_cells = []
+        if summary_cells_dict:
+            for field_name, coordinate in summary_cells_dict.items():
+                summary_cells.append({
+                    "coordinate": coordinate,
+                    "label": field_name,
+                })
+        
         is_bsdm_template = self._is_bsdm_template(tabular_ws)
 
-        if not is_bsdm_template:
+        if not is_bsdm_template and summary_cells:
             for cell_info in summary_cells:
                 coordinate = cell_info["coordinate"]
                 label = cell_info["label"]
@@ -179,46 +280,22 @@ class FormulaValidator:
                     # formulas/calculations and resulting values are mathematically
                     # correct wherever validation is applicable.
                     
-                    # Calculate expected value independently
-                    expected_value = self._calculate_expected_value(
-                        tabular_ws,
-                        score_ws,
-                        coordinate,
-                        label,
-                        header_row,
-                        candidate_rows
-                    )
-                    
-                    if expected_value is not None and value is not None:
-                        # Verify the hardcoded value matches independent calculation
-                        if abs(float(value) - float(expected_value)) > 0.01:
-                            issues.append({
-                                "code": "HARDCODED_VALUE_MISMATCH",
-                                "category": "Formula",
-                                "message": (
-                                    f"Hardcoded value at {coordinate} ({label}) "
-                                    f"does not match independent calculation."
-                                ),
-                                "sheet": "Batch Analysis - Tabular",
-                                "cell": coordinate,
-                                "expected": expected_value,
-                                "actual": value,
-                            })
-                        # If values match, hardcoded value is acceptable
-                    else:
-                        # Cannot verify independently, report as missing formula
-                        issues.append({
-                            "code": "MISSING_TABULAR_FORMULA",
-                            "category": "Formula",
-                            "message": (
-                                f"Expected calculated formula "
-                                f"is missing from {coordinate} ({label})."
-                            ),
-                            "sheet": "Batch Analysis - Tabular",
-                            "cell": coordinate,
-                            "expected": "Excel formula",
-                            "actual": value,
-                        })
+                    # For now, add a REVIEW item since we cannot independently verify
+                    # without implementing the full calculation verification logic
+                    issues.append({
+                        "code": "HARDCODED_SUMMARY_REVIEW",
+                        "category": "Formula",
+                        "message": (
+                            f"Hardcoded summary value for {label} cannot be "
+                            f"independently verified. Manual review required."
+                        ),
+                        "sheet": tabular_sheet_name,
+                        "cell": coordinate,
+                        "expected": "Calculated from source data",
+                        "actual": value,
+                        "severity": "REVIEW",
+                    })
+                    continue
 
         # --------------------------------------------------
         # NOS statistics formulas
@@ -351,111 +428,44 @@ class FormulaValidator:
 
     def _is_bsdm_template(self, tabular_ws):
         """
-        Detect BSDM template variation where C8/C9/C10 contain
+        Detect BSDM template variation where summary cells contain
         hardcoded values instead of formulas.
         
         BSDM workbooks have:
-        - Row 3: Batch ID as hardcoded value (not formula)
-        - Row 7: QP Result with specific hardcoded values
-        - C8, C9, C10: Integer values instead of formulas
+        - Batch ID as hardcoded value (not formula)
+        - QP Result with specific hardcoded values
+        - Summary cells: Integer values instead of formulas
         """
-        # Check if B3 contains a hardcoded value instead of formula
-        b3_value = tabular_ws["B3"].value
-        
-        # If B3 is a formula, this is not BSDM template
-        if isinstance(b3_value, str) and b3_value.startswith("="):
-            return False
-        
-        # Check if B3 is a numeric value (hardcoded)
-        if isinstance(b3_value, (int, float)):
-            return True
-        
-        # Check row 7 for BSDM-specific patterns
+        # Check row 7 for BSDM-specific patterns (QP Result)
         row_7_col_1 = tabular_ws.cell(7, 1).value
-        if row_7_col_1 and "SSC/Q" in str(row_7_col_1):
+        row_7_col_2 = tabular_ws.cell(7, 2).value
+        if (row_7_col_1 and "SSC/Q" in str(row_7_col_1)) or (row_7_col_2 and "SSC/Q" in str(row_7_col_2)):
             return True
         
-        # Check if C8, C9, C10 are hardcoded integers
-        for coordinate in ["C8", "C9", "C10"]:
-            value = tabular_ws[coordinate].value
-            if isinstance(value, (int, float)):
-                # If any of these are hardcoded numbers, it's likely BSDM
+        # Check if batch ID cell contains a hardcoded value instead of formula
+        batch_id_cell = WorkbookAnalyzer.find_batch_id_cell(tabular_ws)
+        
+        if batch_id_cell:
+            batch_id_value = tabular_ws[batch_id_cell].value
+            
+            # If batch ID is a formula, this is not BSDM template
+            if isinstance(batch_id_value, str) and batch_id_value.startswith("="):
+                return False
+            
+            # Check if batch ID is a numeric value (hardcoded)
+            if isinstance(batch_id_value, (int, float)):
                 return True
         
+        # Check for BSDM-specific patterns in summary section
+        summary_cells = WorkbookAnalyzer.find_summary_section(tabular_ws)
+        
+        # If summary cells are found and they contain hardcoded integers
+        # instead of formulas, this might be BSDM template
+        if summary_cells:
+            for field_name, coordinate in summary_cells.items():
+                cell_value = tabular_ws[coordinate].value
+                if isinstance(cell_value, (int, float)) and not isinstance(cell_value, bool):
+                    # Found a hardcoded integer in summary cells
+                    return True
+        
         return False
-
-    def _find_summary_cells(self, tabular_ws):
-        """
-        Dynamically locate summary cells based on labels/headers.
-        
-        Returns list of dicts with 'coordinate' and 'label' for:
-        - Enrolled candidates
-        - Appeared candidates
-        - Passed candidates
-        - Male candidates
-        - Female candidates
-        
-        Per confirmed validation rules, summary values do not have
-        to be located at fixed cells. This method searches for
-        labels and identifies the corresponding value cells.
-        """
-        summary_cells = []
-        
-        # Common label patterns to search for
-        label_patterns = {
-            "enrolled": ["enrolled", "total enrolled", "enrolled candidates"],
-            "appeared": ["appeared", "total appeared", "appeared candidates"],
-            "passed": ["passed", "total passed", "passed candidates"],
-            "male": ["male", "male candidates", "total male"],
-            "female": ["female", "female candidates", "total female"],
-        }
-        
-        # Search first 30 rows for labels
-        for row in range(1, min(tabular_ws.max_row, 30) + 1):
-            for col in range(1, min(tabular_ws.max_column, 10) + 1):
-                cell_value = tabular_ws.cell(row, col).value
-                if cell_value is None:
-                    continue
-                
-                normalized = str(cell_value).strip().lower()
-                
-                # Check if this cell matches any label pattern
-                for label_type, patterns in label_patterns.items():
-                    if any(pattern in normalized for pattern in patterns):
-                        # Found a label, check the cell to the right for the value
-                        value_col = col + 1
-                        if value_col <= tabular_ws.max_column:
-                            coordinate = tabular_ws.cell(row, value_col).coordinate
-                            summary_cells.append({
-                                "coordinate": coordinate,
-                                "label": label_type,
-                            })
-                            # Remove this label from patterns to avoid duplicates
-                            label_patterns[label_type] = []
-        
-        # Fallback to default positions if dynamic detection fails
-        if not summary_cells:
-            # Use traditional positions as fallback
-            summary_cells = [
-                {"coordinate": "C8", "label": "enrolled"},
-                {"coordinate": "C9", "label": "appeared"},
-                {"coordinate": "C10", "label": "passed"},
-                {"coordinate": "F8", "label": "male"},
-                {"coordinate": "G8", "label": "female"},
-            ]
-        
-        return summary_cells
-
-    def _calculate_expected_value(self, tabular_ws, score_ws, coordinate, label, header_row, candidate_rows):
-        """
-        Independently calculate expected value for a summary cell.
-        
-        Per confirmed validation rules: Hardcoded calculated values may be
-        accepted, but independently verify that the final formulas/calculations
-        and resulting values are mathematically correct wherever validation
-        is applicable.
-        """
-        # For now, return None as we can't calculate all values independently
-        # without more context. This allows hardcoded values to be accepted
-        # when we can't verify them independently.
-        return None

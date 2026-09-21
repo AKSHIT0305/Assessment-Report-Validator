@@ -30,6 +30,7 @@ class WorkbookValidator:
         workbook,
         issues,
         template=None,
+        sheet_mapping=None,
     ):
         # Per confirmed validation rules: ignore hidden sheets completely
         # Validation should focus only on the three relevant visible sheets
@@ -58,10 +59,18 @@ class WorkbookValidator:
             return
 
         # --------------------------------------------------
-        # Determine required sheets
+        # Determine required sheets using sheet mapping
         # --------------------------------------------------
 
-        if template == "LEGACY_RESULT":
+        if sheet_mapping:
+            # Use the provided sheet mapping from template detection
+            required_sheets = {
+                sheet_mapping.get("PRIMARY_DATA_SHEET"),
+                sheet_mapping.get("TABULAR_ANALYSIS_SHEET"),
+            }
+            # Filter out None values
+            required_sheets = {s for s in required_sheets if s is not None}
+        elif template == "LEGACY_RESULT":
 
             required_sheets = self.LEGACY_REQUIRED_SHEETS - self.OPTIONAL_SHEETS
 
@@ -71,12 +80,17 @@ class WorkbookValidator:
         }:
 
             required_sheets = self.STANDARD_REQUIRED_SHEETS - self.OPTIONAL_SHEETS
-
         else:
-
-            # Unknown template:
-            # don't blindly apply STANDARD requirements.
-            return
+            # Fallback: try to identify sheets dynamically
+            from backend.app.utils.sheet_mapper import SheetMapper
+            primary = SheetMapper.identify_primary_data_sheet(workbook)
+            tabular = SheetMapper.identify_tabular_analysis_sheet(workbook)
+            
+            required_sheets = set()
+            if primary:
+                required_sheets.add(primary)
+            if tabular:
+                required_sheets.add(tabular)
 
         # --------------------------------------------------
         # Required sheets

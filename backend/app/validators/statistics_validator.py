@@ -2,14 +2,33 @@ import math
 import statistics
 
 from backend.app.utils.score_utils import get_score_columns
+from backend.app.utils.sheet_mapper import SheetMapper
+from backend.app.utils.workbook_analyzer import WorkbookAnalyzer
 
 
 class StatisticsValidator:
 
-    def validate(self, workbook, issues):
-
-        score_ws = workbook["score_sheet"]
-        tabular_ws = workbook["Batch Analysis - Tabular"]
+    def validate(self, workbook, issues, sheet_mapping=None, template=None):
+        
+        # Resolve sheet names using sheet mapping
+        if sheet_mapping:
+            primary_sheet_name = sheet_mapping.get("PRIMARY_DATA_SHEET")
+            tabular_sheet_name = sheet_mapping.get("TABULAR_ANALYSIS_SHEET")
+        else:
+            # Fallback to dynamic detection
+            primary_sheet_name = SheetMapper.identify_primary_data_sheet(workbook)
+            tabular_sheet_name = SheetMapper.identify_tabular_analysis_sheet(workbook)
+        
+        if primary_sheet_name is None or primary_sheet_name not in workbook.sheetnames:
+            # Cannot validate without primary sheet
+            return
+        
+        score_ws = workbook[primary_sheet_name]
+        
+        # Tabular sheet is optional
+        tabular_ws = None
+        if tabular_sheet_name and tabular_sheet_name in workbook.sheetnames:
+            tabular_ws = workbook[tabular_sheet_name]
 
         header_row = self._find_header_row(score_ws)
 

@@ -2,6 +2,7 @@ from collections import Counter
 from datetime import datetime, date
 
 from backend.app.utils.score_utils import get_score_columns
+from backend.app.utils.sheet_mapper import SheetMapper
 
 
 class DataValidator:
@@ -9,9 +10,20 @@ class DataValidator:
     Validates candidate-level raw data in score_sheet.
     """
 
-    def validate(self, workbook, issues):
-
-        ws = workbook["score_sheet"]
+    def validate(self, workbook, issues, sheet_mapping=None):
+        
+        # Resolve primary sheet name using sheet mapping
+        if sheet_mapping:
+            primary_sheet_name = sheet_mapping.get("PRIMARY_DATA_SHEET")
+        else:
+            # Fallback to dynamic detection
+            primary_sheet_name = SheetMapper.identify_primary_data_sheet(workbook)
+        
+        if primary_sheet_name is None or primary_sheet_name not in workbook.sheetnames:
+            # Cannot validate without primary sheet
+            return
+        
+        ws = workbook[primary_sheet_name]
 
         # --------------------------------------------------
         # Find candidate header row
@@ -33,7 +45,7 @@ class DataValidator:
                     "thorough search across all rows and columns. "
                     "Workbook requires manual review."
                 ),
-                "sheet": "score_sheet",
+                "sheet": primary_sheet_name,
                 "cell": None,
                 "expected": "Header containing Candidate ID",
                 "actual": None,
@@ -93,7 +105,7 @@ class DataValidator:
                 "code": "NO_CANDIDATE_DATA",
                 "category": "Data",
                 "message": "No candidate records were found.",
-                "sheet": "score_sheet",
+                "sheet": primary_sheet_name,
                 "cell": None,
                 "expected": "At least one candidate",
                 "actual": "0 candidates",
@@ -125,7 +137,7 @@ class DataValidator:
                         "code": "MISSING_CANDIDATE_ID",
                         "category": "Data",
                         "message": "Candidate ID is missing.",
-                        "sheet": "score_sheet",
+                        "sheet": primary_sheet_name,
                         "cell": (
                             f"{self._column_letter(candidate_id_col)}"
                             f"{row}"
@@ -160,7 +172,7 @@ class DataValidator:
                     f"Duplicate Candidate ID: "
                     f"{candidate_id}"
                 ),
-                "sheet": "score_sheet",
+                "sheet": primary_sheet_name,
                 "cell": None,
                 "expected": "Unique Candidate IDs",
                 "actual": candidate_id,
@@ -197,7 +209,7 @@ class DataValidator:
                     "code": "MULTIPLE_BATCH_IDS",
                     "category": "Data",
                     "message": "Multiple Batch IDs found.",
-                    "sheet": "score_sheet",
+                    "sheet": primary_sheet_name,
                     "cell": (
                         f"{self._column_letter(batch_id_col)}"
                         f"{candidate_rows[0]}:"
@@ -253,7 +265,7 @@ class DataValidator:
                             f"Invalid gender value: "
                             f"{gender}"
                         ),
-                        "sheet": "score_sheet",
+                        "sheet": primary_sheet_name,
                         "cell": (
                             f"{self._column_letter(gender_col)}"
                             f"{row}"
@@ -296,7 +308,7 @@ class DataValidator:
                         "message": (
                             "Invalid assessment date."
                         ),
-                        "sheet": "score_sheet",
+                        "sheet": primary_sheet_name,
                         "cell": (
                             f"{self._column_letter(assessment_date_col)}"
                             f"{row}"
@@ -358,7 +370,7 @@ class DataValidator:
                         "message": (
                             "Score must be numeric."
                         ),
-                        "sheet": "score_sheet",
+                        "sheet": primary_sheet_name,
                         "cell": cell,
                         "expected": (
                             f"Numeric value between "
@@ -381,7 +393,7 @@ class DataValidator:
                             "Score is outside "
                             "allowed range."
                         ),
-                        "sheet": "score_sheet",
+                        "sheet": primary_sheet_name,
                         "cell": cell,
                         "expected": (
                             f"0 to "

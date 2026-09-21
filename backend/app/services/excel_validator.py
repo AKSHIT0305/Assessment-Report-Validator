@@ -9,6 +9,7 @@ from backend.app.validators.statistics_validator import StatisticsValidator
 from backend.app.validators.excel_error_validator import ExcelErrorValidator
 from backend.app.validators.cross_sheet_validator import CrossSheetValidator
 from backend.app.validators.template_detector import TemplateDetector
+from backend.app.utils.sheet_mapper import SheetMapper
 
 
 class ExcelValidator:
@@ -68,11 +69,11 @@ class ExcelValidator:
             # 2. DETECT TEMPLATE
             # ==================================================
 
-            template = self.template_detector.detect(
+            template_result = self.template_detector.detect(
                 workbook
             )
 
-            if template is None:
+            if template_result is None:
 
                 return {
                     "status": "ERROR",
@@ -97,6 +98,9 @@ class ExcelValidator:
                     "warnings": [],
                 }
 
+            template = template_result["template"]
+            sheet_mapping = template_result["sheet_mapping"]
+
             # ==================================================
             # 3. WORKBOOK STRUCTURE
             # ==================================================
@@ -104,7 +108,8 @@ class ExcelValidator:
             self.workbook_validator.validate(
                 workbook,
                 issues,
-                template=template
+                template=template,
+                sheet_mapping=sheet_mapping
             )
 
             # ==================================================
@@ -146,7 +151,8 @@ class ExcelValidator:
 
                     self.data_validator.validate(
                         workbook,
-                        issues
+                        issues,
+                        sheet_mapping=sheet_mapping
                     )
 
                     # ------------------------------------------
@@ -155,7 +161,9 @@ class ExcelValidator:
 
                     self.formula_validator.validate(
                         workbook,
-                        issues
+                        issues,
+                        sheet_mapping=sheet_mapping,
+                        template=template
                     )
 
                     # ------------------------------------------
@@ -164,7 +172,9 @@ class ExcelValidator:
 
                     self.statistics_validator.validate(
                         workbook,
-                        issues
+                        issues,
+                        sheet_mapping=sheet_mapping,
+                        template=template
                     )
 
                     # ------------------------------------------
@@ -173,7 +183,9 @@ class ExcelValidator:
 
                     self.cross_sheet_validator.validate(
                         workbook,
-                        issues
+                        issues,
+                        sheet_mapping=sheet_mapping,
+                        template=template
                     )
 
             # ==================================================
@@ -182,6 +194,7 @@ class ExcelValidator:
             # Per confirmed validation rules: BOTH workbook template
             # families are officially accepted. Do not reject a workbook
             # only because it belongs to the legacy or alternate template family.
+            # Apply the same validation logic using sheet mapping.
 
             elif template == (
                 TemplateDetector.TEMPLATE_LEGACY_RESULT
@@ -192,18 +205,67 @@ class ExcelValidator:
                 # - Analysis-Tabular (instead of Batch Analysis - Tabular)
                 # - Analysis - Graph (instead of Batch Analysis - Graph)
                 
-                # Map legacy sheet names to standard validation logic
-                if "Result" in workbook.sheetnames:
-                    # Apply data validation to Result sheet (equivalent to score_sheet)
-                    # This requires adapting the validators to work with different sheet names
-                    # For now, we accept the legacy template structure as valid
-                    pass
+                # Check if required sheets exist for legacy template
+                required_sheets = {
+                    sheet_mapping.get("PRIMARY_DATA_SHEET"),
+                    sheet_mapping.get("TABULAR_ANALYSIS_SHEET"),
+                }
+                required_sheets = {s for s in required_sheets if s is not None}
                 
-                if "Analysis-Tabular" in workbook.sheetnames:
-                    # Apply cross-sheet validation between Result and Analysis-Tabular
-                    # This requires adapting the cross-sheet validator
-                    # For now, we accept the legacy template structure as valid
-                    pass
+                available_sheets = set(
+                    sheet_name
+                    for sheet_name in workbook.sheetnames
+                    if not workbook[sheet_name].sheet_state == 'hidden'
+                )
+                
+                has_required_sheets = required_sheets <= available_sheets
+                
+                if has_required_sheets:
+                    # Apply the same validation logic as standard templates
+                    # The sheet mapping handles the name differences
+                    
+                    # ------------------------------------------
+                    # Raw data validation
+                    # ------------------------------------------
+
+                    self.data_validator.validate(
+                        workbook,
+                        issues,
+                        sheet_mapping=sheet_mapping
+                    )
+
+                    # ------------------------------------------
+                    # Formula validation
+                    # ------------------------------------------
+
+                    self.formula_validator.validate(
+                        workbook,
+                        issues,
+                        sheet_mapping=sheet_mapping,
+                        template=template
+                    )
+
+                    # ------------------------------------------
+                    # Statistics validation
+                    # ------------------------------------------
+
+                    self.statistics_validator.validate(
+                        workbook,
+                        issues,
+                        sheet_mapping=sheet_mapping,
+                        template=template
+                    )
+
+                    # ------------------------------------------
+                    # Cross-sheet validation
+                    # ------------------------------------------
+
+                    self.cross_sheet_validator.validate(
+                        workbook,
+                        issues,
+                        sheet_mapping=sheet_mapping,
+                        template=template
+                    )
 
         finally:
 

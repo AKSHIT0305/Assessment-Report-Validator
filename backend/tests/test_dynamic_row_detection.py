@@ -170,18 +170,14 @@ class TestDynamicRowDetection:
         score_ws = wb.active
         score_ws.title = "score_sheet"
         
-        # Header with metadata (to make it look like alternate template)
-        score_ws.cell(1, 1, "Batch Metadata")
-        score_ws.cell(1, 2, "TEST-001")
-        
-        # Header with all required fields EXCEPT Candidate ID
+        # Header with NO Candidate ID at all - that's the test
         score_ws.cell(12, 1, "Batch ID")
         score_ws.cell(12, 2, "Trainee Name")
         score_ws.cell(12, 3, "Gender")
         score_ws.cell(12, 4, "Assessment Date")
         score_ws.cell(12, 5, "SSC/N8417 - Score")
         score_ws.cell(12, 6, "Pass/Fail")
-        # No Candidate ID column
+        # NO Candidate ID column (that's the point of the test)
         
         # Data
         score_ws.cell(13, 1, "BATCH-001")
@@ -202,20 +198,18 @@ class TestDynamicRowDetection:
         wb.save(file_path)
         wb.close()
         
-        # Test that the data validator properly handles missing Candidate ID
-        from openpyxl import load_workbook
-        test_wb = load_workbook(file_path)
-        issues = []
+        # Test using the COMPLETE ExcelValidator pipeline (production code path)
+        from backend.app.services.excel_validator import ExcelValidator
+        excel_validator = ExcelValidator()
+        result = excel_validator.validate(file_path)
         
-        data_validator = DataValidator()
-        data_validator.validate(test_wb, issues)
+        # Workbook should be REVIEW because Candidate ID cannot be found
+        assert result["status"] == "REVIEW", f"Expected REVIEW status, got {result['status']}"
         
-        # Check that the candidate header not found error has REVIEW severity
-        candidate_header_errors = [e for e in issues if e.get("code") == "CANDIDATE_HEADER_NOT_FOUND"]
+        # Should have CANDIDATE_HEADER_NOT_FOUND error with REVIEW severity
+        candidate_header_errors = [e for e in result["errors"] if e.get("code") == "CANDIDATE_HEADER_NOT_FOUND"]
         assert len(candidate_header_errors) > 0, "Should have CANDIDATE_HEADER_NOT_FOUND error"
-        assert candidate_header_errors[0].get("severity") == "REVIEW", "Should have REVIEW severity for missing Candidate ID"
-        
-        test_wb.close()
+        assert candidate_header_errors[0].get("severity") == "REVIEW", "Should have REVIEW severity"
 
     def test_hidden_sheets_ignored(self):
         """Test that hidden sheets are completely ignored during validation."""
@@ -306,11 +300,14 @@ class TestDynamicRowDetection:
         
         # Test that additional NOS rows are allowed
         from openpyxl import load_workbook
+        from backend.app.utils.sheet_mapper import SheetMapper
         test_wb = load_workbook(file_path)
         issues = []
         
+        # Provide sheet mapping to ensure correct sheet identification
+        sheet_mapping = SheetMapper.get_mapping("STANDARD")
         cross_sheet_validator = CrossSheetValidator()
-        cross_sheet_validator.validate(test_wb, issues)
+        cross_sheet_validator.validate(test_wb, issues, sheet_mapping=sheet_mapping)
         
         # Should not have NOS mismatch errors for additional rows
         nos_errors = [e for e in issues if e.get("code") == "NOS_MISMATCH"]
@@ -414,13 +411,17 @@ class TestDynamicRowDetection:
         
         # Check STANDARD template
         test_wb_standard = load_workbook(file_path_standard)
-        template_standard = template_detector.detect(test_wb_standard)
+        template_result_standard = template_detector.detect(test_wb_standard)
+        assert template_result_standard is not None, "Should detect a template"
+        template_standard = template_result_standard["template"]
         assert template_standard in {"STANDARD", "ALTERNATE_SCORE"}, "Should detect STANDARD or ALTERNATE_SCORE template"
         test_wb_standard.close()
         
         # Check LEGACY template
         test_wb_legacy = load_workbook(file_path_legacy)
-        template_legacy = template_detector.detect(test_wb_legacy)
+        template_result_legacy = template_detector.detect(test_wb_legacy)
+        assert template_result_legacy is not None, "Should detect a template"
+        template_legacy = template_result_legacy["template"]
         assert template_legacy == "LEGACY_RESULT", "Should detect LEGACY_RESULT template"
         test_wb_legacy.close()
 

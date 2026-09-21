@@ -1,3 +1,7 @@
+from backend.app.utils.sheet_mapper import SheetMapper
+from backend.app.utils.workbook_analyzer import WorkbookAnalyzer
+
+
 class TemplateDetector:
     """
     Detects the assessment report template based on
@@ -28,7 +32,10 @@ class TemplateDetector:
             "Analysis - Graph",
         }.issubset(visible_sheets):
 
-            return self.TEMPLATE_LEGACY_RESULT
+            return {
+                "template": self.TEMPLATE_LEGACY_RESULT,
+                "sheet_mapping": SheetMapper.get_mapping(self.TEMPLATE_LEGACY_RESULT),
+            }
 
         # --------------------------------------------------
         # score_sheet based templates
@@ -99,9 +106,15 @@ class TemplateDetector:
                     break
             
             if has_metadata:
-                return self.TEMPLATE_ALTERNATE_SCORE
+                return {
+                    "template": self.TEMPLATE_ALTERNATE_SCORE,
+                    "sheet_mapping": SheetMapper.get_mapping(self.TEMPLATE_ALTERNATE_SCORE),
+                }
 
-            return self.TEMPLATE_STANDARD
+            return {
+                "template": self.TEMPLATE_STANDARD,
+                "sheet_mapping": SheetMapper.get_mapping(self.TEMPLATE_STANDARD),
+            }
 
         # --------------------------------------------------
         # Standard template
@@ -111,7 +124,10 @@ class TemplateDetector:
             has_batch_id
             and has_candidate_id
         ):
-            return self.TEMPLATE_STANDARD
+            return {
+                "template": self.TEMPLATE_STANDARD,
+                "sheet_mapping": SheetMapper.get_mapping(self.TEMPLATE_STANDARD),
+            }
 
         return None
 

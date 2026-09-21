@@ -1,23 +1,40 @@
+from backend.app.utils.sheet_mapper import SheetMapper
+from backend.app.utils.workbook_analyzer import WorkbookAnalyzer
+from backend.app.utils.score_utils import get_score_columns
+
+
 class CrossSheetValidator:
     """
-    Validates consistency between score_sheet and
-    Batch Analysis - Tabular.
+    Validates consistency between primary data sheet and
+    tabular analysis sheet.
     """
 
-    def validate(self, workbook, issues):
-
+    def validate(self, workbook, issues, sheet_mapping=None, template=None):
+        
+        # Resolve sheet names using sheet mapping
+        if sheet_mapping:
+            primary_sheet_name = sheet_mapping.get("PRIMARY_DATA_SHEET")
+            tabular_sheet_name = sheet_mapping.get("TABULAR_ANALYSIS_SHEET")
+        else:
+            # Fallback to dynamic detection
+            primary_sheet_name = SheetMapper.identify_primary_data_sheet(workbook)
+            tabular_sheet_name = SheetMapper.identify_tabular_analysis_sheet(workbook)
+        
         # Per confirmed validation rules: ignore hidden sheets completely
         visible_sheets = [
             sheet_name
             for sheet_name in workbook.sheetnames
             if not workbook[sheet_name].sheet_state == 'hidden'
         ]
-
-        if "score_sheet" not in visible_sheets or "Batch Analysis - Tabular" not in visible_sheets:
+        
+        # Both sheets are required for cross-sheet validation
+        if primary_sheet_name is None or primary_sheet_name not in visible_sheets:
+            return
+        if tabular_sheet_name is None or tabular_sheet_name not in visible_sheets:
             return
 
-        score_ws = workbook["score_sheet"]
-        tabular_ws = workbook["Batch Analysis - Tabular"]
+        score_ws = workbook[primary_sheet_name]
+        tabular_ws = workbook[tabular_sheet_name]
 
         header_row = self._find_header_row(score_ws)
 
@@ -52,9 +69,8 @@ class CrossSheetValidator:
         # --------------------------------------------------
         # Batch ID
         # --------------------------------------------------
-        # Dynamic batch ID location: search for batch ID label
-        # instead of assuming fixed position B3
-        batch_id_cell = self._find_batch_id_cell(tabular_ws)
+        # Dynamic batch ID location: use WorkbookAnalyzer
+        batch_id_cell = WorkbookAnalyzer.find_batch_id_cell(tabular_ws)
 
         if batch_id_cell:
             batch_id = score_ws.cell(
@@ -87,7 +103,7 @@ class CrossSheetValidator:
                         "message": (
                             "Batch ID does not match between sheets."
                         ),
-                        "sheet": "Batch Analysis - Tabular",
+                        "sheet": tabular_sheet_name,
                         "cell": batch_id_cell,
                         "expected": batch_id,
                         "actual": tabular_batch_id,
@@ -101,20 +117,21 @@ class CrossSheetValidator:
         # WEAK PCs are allowed. Distinguish valid additional rows
         # from actual missing or inconsistent NOS data.
 
-        score_nos = self._get_score_nos(
-            score_ws
-        )
+        score_nos = self._get_score_nos(score_ws)
 
-        # Find NOS section start row dynamically
-        nos_start_row = self._find_nos_start_row(tabular_ws)
+        # Find NOS section dynamically using WorkbookAnalyzer
+        nos_section = WorkbookAnalyzer.find_nos_section(tabular_ws)
         
-        if nos_start_row is None:
-            # Can't validate NOS names without knowing where they start
+        if nos_section is None:
+            # Can't validate NOS names without finding the section
             return
+        
+        nos_start_row = nos_section["start_row"]
+        nos_end_row = nos_section["end_row"]
 
         # Collect all NOS codes from Tabular sheet (including additional rows)
         tabular_nos_list = []
-        for row in range(nos_start_row, min(tabular_ws.max_row, nos_start_row + 50) + 1):
+        for row in range(nos_start_row, nos_end_row + 1):
             nos_value = tabular_ws.cell(row, 1).value
             if nos_value is None:
                 continue
@@ -159,13 +176,13 @@ class CrossSheetValidator:
                     "code": "NOS_MISMATCH",
                     "category": "Cross Sheet",
                     "message": (
-                        f"NOS '{missing_nos}' from score_sheet "
-                        f"is missing from Batch Analysis - Tabular."
+                        f"NOS '{missing_nos}' from {primary_sheet_name} "
+                        f"is missing from {tabular_sheet_name}."
                     ),
-                    "sheet": "Batch Analysis - Tabular",
+                    "sheet": tabular_sheet_name,
                     "cell": None,
                     "expected": missing_nos,
-                    "actual": "Not found in Tabular sheet",
+                    "actual": "Not found in tabular sheet",
                 })
 
     # ======================================================
@@ -392,78 +409,6 @@ class CrossSheetValidator:
 
         return False
 
-    def _find_header_row(self, ws):
-        """Find the row containing 'Candidate ID' header."""
-        for row in range(1, ws.max_row + 1):
-            for column in range(1, ws.max_column + 1):
-                value = ws.cell(row, column).value
-                if value is None:
-                    continue
-                normalized = (
-                    str(value)
-                    .strip()
-                    .lower()
-                    .replace("_", " ")
-                )
-                if normalized in {"candidate id", "candidateid"}:
-                    return row
-        return None
-
-    def _find_nos_start_row(self, tabular_ws):
-        """Find the row where NOS statistics begin in Tabular sheet."""
-        # Look for NOS SUMMARY header or first NOS code
-        nos_summary_row = None
-        first_nos_code_row = None
-        
-        for row in range(1, min(tabular_ws.max_row, 30) + 1):
-            value = tabular_ws.cell(row, 1).value
-            if value is None:
-                continue
-            cell_value = str(value).strip()
-            # Check for NOS SUMMARY header
-            if "NOS SUMMARY" in cell_value.upper():
-                nos_summary_row = row
-            # Check for actual NOS codes (SSC/, MEP/, DGT/, etc.)
-            if any(prefix in cell_value.upper() for prefix in ["SSC/", "MEP/", "DGT/", "TEL/"]):
-                first_nos_code_row = row
-                break  # Found first actual NOS code, stop searching
-        
-        # If we found actual NOS codes, that's the start row
-        if first_nos_code_row:
-            return first_nos_code_row
-        
-        # If we only found NOS SUMMARY header, NOS data typically starts 2 rows after
-        # (row + 1 is usually headers, row + 2 is data)
-        if nos_summary_row:
-            return nos_summary_row + 2
-        
-        return None
-
-    def _find_batch_id_cell(self, tabular_ws):
-        """
-        Dynamically locate the batch ID cell in Tabular sheet.
-        Searches for batch ID label and returns the coordinate
-        of the value cell to the right.
-        """
-        # Search first 30 rows for batch ID label
-        for row in range(1, min(tabular_ws.max_row, 30) + 1):
-            for col in range(1, min(tabular_ws.max_column, 10) + 1):
-                cell_value = tabular_ws.cell(row, col).value
-                if cell_value is None:
-                    continue
-                
-                normalized = str(cell_value).strip().lower()
-                
-                # Check if this cell is a batch ID label
-                if normalized in {"batch id", "batchid", "batch"}:
-                    # Found a label, check the cell to the right for the value
-                    value_col = col + 1
-                    if value_col <= tabular_ws.max_column:
-                        return tabular_ws.cell(row, value_col).coordinate
-        
-        # Fallback to traditional position if dynamic detection fails
-        return "B3"
-
     def _is_valid_nos_code(self, nos_string):
         """
         Check if a string represents a valid NOS code.
@@ -491,3 +436,8 @@ class CrossSheetValidator:
             return True
         
         return False
+
+    def _get_score_nos(self, ws):
+        """Extract NOS names from score sheet headers."""
+        score_columns = get_score_columns(ws)
+        return [info["nos"] for info in score_columns]
