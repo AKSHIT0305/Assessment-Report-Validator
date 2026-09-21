@@ -65,12 +65,13 @@ function FileCard({
 }) {
 
   const isCorrect = file.status === "PASS";
+  const isReview = file.status === "REVIEW";
 
   return (
     <article>
 
       <h3>
-        {isCorrect ? "✅" : "❌"} {file.filename}
+        {isCorrect ? "✅" : isReview ? "⚠️" : "❌"} {file.filename}
       </h3>
 
       <p>
@@ -121,9 +122,34 @@ function FileCard({
         </div>
       )}
 
+      {file.review_items && file.review_items.length > 0 && (
+        <div>
+
+          <h4>
+            Review Items ({file.review_items.length})
+          </h4>
+
+          <ul>
+            {file.review_items.map((issue, index) => (
+              <IssueDetails
+                key={`review-${issue.code}-${issue.cell}-${index}`}
+                issue={issue}
+              />
+            ))}
+          </ul>
+
+        </div>
+      )}
+
       {isCorrect && file.errors.length === 0 && (
         <p>
           ✅ No validation errors found.
+        </p>
+      )}
+
+      {isReview && file.errors.length === 0 && (
+        <p>
+          ⚠️ Workbook requires manual review but has no errors.
         </p>
       )}
 
@@ -144,7 +170,7 @@ export default function FileResults({
         <h2>File Results</h2>
 
         <p>
-          Correct files and incorrect files with
+          Correct files, incorrect files, and review files with
           exact validation errors will appear here.
         </p>
 
@@ -201,6 +227,33 @@ export default function FileResults({
         ) : (
           <div>
             {data.incorrect_files.map((file) => (
+              <FileCard
+                key={file.filename}
+                file={file}
+              />
+            ))}
+          </div>
+        )}
+
+      </div>
+
+      {/* ================================================
+          REVIEW FILES
+          ================================================ */}
+
+      <div>
+
+        <h3>
+          ⚠️ Review Files ({data.review_files?.length || 0})
+        </h3>
+
+        {!data.review_files || data.review_files.length === 0 ? (
+          <p>
+            No files require review.
+          </p>
+        ) : (
+          <div>
+            {data.review_files.map((file) => (
               <FileCard
                 key={file.filename}
                 file={file}

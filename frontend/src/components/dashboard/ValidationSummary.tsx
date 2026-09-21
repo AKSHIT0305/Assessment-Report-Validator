@@ -17,6 +17,7 @@ export default function ValidationSummary({
         <p>0 / 0 files correct</p>
         <p>Correct: 0</p>
         <p>Incorrect: 0</p>
+        <p>Review: 0</p>
         <p>Errors: 0</p>
 
       </section>
@@ -26,6 +27,7 @@ export default function ValidationSummary({
   const total = data.total_files;
   const correct = data.summary.correct;
   const incorrect = data.summary.incorrect;
+  const review = data.summary.review || 0;
 
   const totalErrors = data.files.reduce(
     (total, file) => total + file.errors.length,
@@ -47,6 +49,10 @@ export default function ValidationSummary({
 
       <p>
         Incorrect: {incorrect}
+      </p>
+
+      <p>
+        Review: {review}
       </p>
 
       <p>

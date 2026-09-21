@@ -15,23 +15,29 @@ class DataValidator:
 
         # --------------------------------------------------
         # Find candidate header row
+        # Perform thorough search across all rows and columns
         # --------------------------------------------------
 
         header_row = self._find_header_row(ws)
 
         if header_row is None:
 
+            # Per confirmed validation rules: if Candidate ID cannot be found
+            # after a complete search, place the workbook under REVIEW
+            # instead of immediately treating it as a standard validation failure.
             issues.append({
                 "code": "CANDIDATE_HEADER_NOT_FOUND",
                 "category": "Data",
                 "message": (
-                    "Candidate data header row "
-                    "could not be identified."
+                    "Candidate ID header could not be found after "
+                    "thorough search across all rows and columns. "
+                    "Workbook requires manual review."
                 ),
                 "sheet": "score_sheet",
                 "cell": None,
                 "expected": "Header containing Candidate ID",
                 "actual": None,
+                "severity": "REVIEW",  # Custom severity to trigger REVIEW status
             })
 
             return
@@ -210,6 +216,9 @@ class DataValidator:
 
         if gender_col is not None:
 
+            # Accepted gender values per confirmed validation rules:
+            # M, F, Male, Female (standard)
+            # -, NA (students who did not appear for assessment)
             allowed_genders = {
                 "male",
                 "female",
@@ -218,7 +227,7 @@ class DataValidator:
                 "n/a",
                 "na",
                 "n.a.",
-                "-",  # Treat "-" as missing/unknown gender
+                "-",  # Student did not appear for assessment
             }
 
             for row in candidate_rows:
@@ -255,6 +264,8 @@ class DataValidator:
                             "F",
                             "M",
                             "N/A",
+                            "NA",
+                            "-",
                         ],
                         "actual": gender,
                     })

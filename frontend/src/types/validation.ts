@@ -6,20 +6,22 @@ export type ValidationIssue = {
   cell?: string | null;
   expected?: unknown;
   actual?: unknown;
-  severity?: "ERROR" | "WARNING";
+  severity?: "ERROR" | "WARNING" | "REVIEW";
 };
 
 export type FileValidationResult = {
   filename: string;
-  status: "PASS" | "ERROR";
+  status: "PASS" | "ERROR" | "REVIEW";
   template?: string | null;
   errors: ValidationIssue[];
   warnings: ValidationIssue[];
+  review_items?: ValidationIssue[];
 };
 
 export type ValidationSummary = {
   correct: number;
   incorrect: number;
+  review: number;
   percentage_correct: number;
 };
 
@@ -31,6 +33,8 @@ export type ValidationResponse = {
   correct_files: string[];
 
   incorrect_files: FileValidationResult[];
+
+  review_files: FileValidationResult[];
 
   files: FileValidationResult[];
 };

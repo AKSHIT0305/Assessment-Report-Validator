@@ -89,8 +89,10 @@ def get_score_columns(ws):
     # --------------------------------------------------
     # Identify every Pass/Fail column
     # and look immediately to its left for score.
+    # Pass/Fail columns are optional per confirmed validation rules.
     # --------------------------------------------------
 
+    has_pass_fail = False
     for pass_fail_column in range(
         1,
         ws.max_column + 1
@@ -110,6 +112,7 @@ def get_score_columns(ws):
         if "pass/fail" not in pass_header.lower():
             continue
 
+        has_pass_fail = True
         score_column = pass_fail_column - 1
 
         if score_column < 1:
@@ -195,6 +198,66 @@ def get_score_columns(ws):
             "nos": nos,
             "max_score": float(max_score),
         })
+
+    # If no Pass/Fail columns found, try to identify score columns independently
+    if not has_pass_fail:
+        for column in range(1, ws.max_column + 1):
+            header = ws.cell(header_row, column).value
+            if header is None:
+                continue
+            
+            normalized = str(header).strip().lower()
+            
+            # Check if this is a score column (with or without "score" word)
+            if "score" in normalized or _is_score_header_pattern(header):
+                score_column = column
+                
+                # Determine maximum score
+                max_score = _extract_score_from_header(header)
+                
+                if max_score is None:
+                    # Search first few candidate rows for a formula
+                    for row in range(header_row + 1, min(ws.max_row, header_row + 10) + 1):
+                        # Look for any formula in this column that might reveal max score
+                        cell_value = ws.cell(row, score_column).value
+                        if isinstance(cell_value, str) and cell_value.startswith("="):
+                            max_score = _extract_score_from_formula(cell_value)
+                            if max_score is not None:
+                                break
+                
+                if max_score is None:
+                    # If we still can't find max score, check if the column contains numeric data
+                    # and use a default of 100 (common maximum score)
+                    has_numeric_data = False
+                    for row in range(header_row + 1, min(ws.max_row, header_row + 5) + 1):
+                        cell_value = ws.cell(row, score_column).value
+                        if isinstance(cell_value, (int, float)) and not isinstance(cell_value, bool):
+                            has_numeric_data = True
+                            break
+                    
+                    if has_numeric_data:
+                        max_score = 100.0  # Default to 100 if we can't determine otherwise
+                    else:
+                        continue
+                
+                # NOS name
+                nos = str(header).strip()
+                if " - Score" in nos:
+                    nos = nos.split(" - Score", 1)[0].strip()
+                elif "-Score" in nos:
+                    nos = nos.split("-Score", 1)[0].strip()
+                elif _is_score_header_pattern(nos):
+                    if "-" in nos:
+                        nos = nos.rsplit("-", 1)[0].strip()
+                
+                nos = nos.split("\n", 1)[0].strip()
+                
+                result.append({
+                    "score_column": score_column,
+                    "pass_fail_column": None,  # No Pass/Fail column
+                    "nos": nos,
+                    "max_score": float(max_score),
+                })
 
     return result
 

@@ -179,27 +179,44 @@ class ExcelValidator:
             # ==================================================
             # 6. LEGACY TEMPLATE
             # ==================================================
+            # Per confirmed validation rules: BOTH workbook template
+            # families are officially accepted. Do not reject a workbook
+            # only because it belongs to the legacy or alternate template family.
 
             elif template == (
                 TemplateDetector.TEMPLATE_LEGACY_RESULT
             ):
 
-                # Legacy-specific validation will be added
-                # separately.
-                pass
+                # Legacy template uses different sheet names:
+                # - Result (instead of score_sheet)
+                # - Analysis-Tabular (instead of Batch Analysis - Tabular)
+                # - Analysis - Graph (instead of Batch Analysis - Graph)
+                
+                # Map legacy sheet names to standard validation logic
+                if "Result" in workbook.sheetnames:
+                    # Apply data validation to Result sheet (equivalent to score_sheet)
+                    # This requires adapting the validators to work with different sheet names
+                    # For now, we accept the legacy template structure as valid
+                    pass
+                
+                if "Analysis-Tabular" in workbook.sheetnames:
+                    # Apply cross-sheet validation between Result and Analysis-Tabular
+                    # This requires adapting the cross-sheet validator
+                    # For now, we accept the legacy template structure as valid
+                    pass
 
         finally:
 
             workbook.close()
 
         # ==================================================
-        # 7. SEPARATE ERRORS AND WARNINGS
+        # 7. SEPARATE ERRORS, WARNINGS, AND REVIEW ITEMS
         # ==================================================
 
         errors = [
             issue
             for issue in issues
-            if issue.get("severity", "ERROR") != "WARNING"
+            if issue.get("severity", "ERROR") not in {"WARNING", "REVIEW"}
         ]
 
         warnings = [
@@ -208,19 +225,31 @@ class ExcelValidator:
             if issue.get("severity") == "WARNING"
         ]
 
+        review_items = [
+            issue
+            for issue in issues
+            if issue.get("severity") == "REVIEW"
+        ]
+
         # ==================================================
         # 8. FINAL STATUS
         # ==================================================
+        # Status can be: PASS, ERROR, or REVIEW
+        # - PASS: No errors or review items
+        # - REVIEW: Has review items but no errors
+        # - ERROR: Has errors
 
-        status = (
-            "PASS"
-            if not errors
-            else "ERROR"
-        )
+        if review_items and not errors:
+            status = "REVIEW"
+        elif errors:
+            status = "ERROR"
+        else:
+            status = "PASS"
 
         return {
             "status": status,
             "template": template,
             "errors": errors,
             "warnings": warnings,
+            "review_items": review_items,
         }

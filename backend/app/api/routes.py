@@ -157,6 +157,12 @@ async def validate(
         if result["status"] == "ERROR"
     ]
 
+    review_files = [
+        result
+        for result in results
+        if result["status"] == "REVIEW"
+    ]
+
     total_files = len(results)
 
     correct_count = len(
@@ -167,12 +173,17 @@ async def validate(
         incorrect_files
     )
 
+    review_count = len(
+        review_files
+    )
+
     return {
         "total_files": total_files,
 
         "summary": {
             "correct": correct_count,
             "incorrect": incorrect_count,
+            "review": review_count,
             "percentage_correct": (
                 round(
                     correct_count /
@@ -188,6 +199,8 @@ async def validate(
         "correct_files": correct_files,
 
         "incorrect_files": incorrect_files,
+
+        "review_files": review_files,
 
         "files": results,
     }

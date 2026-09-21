@@ -252,48 +252,57 @@ class StatisticsValidator:
         # --------------------------------------------------
         # Batch totals
         # --------------------------------------------------
-        # Business rule: C8, C9, C10, F8, G8 are template-specific
-        # summary cell positions for the current ALTERNATE_SCORE template.
+        # Dynamic summary cell detection: Locate summary cells
+        # based on labels/headers rather than fixed positions.
+        # Per confirmed validation rules, summary values do not
+        # have to be located at fixed cells.
 
-        self._check_number(
-            tabular_ws,
-            "C8",
-            enrolled,
-            issues,
-            "Enrolled candidates"
-        )
+        summary_cells = self._find_summary_cells(tabular_ws)
 
-        self._check_number(
-            tabular_ws,
-            "C9",
-            appeared,
-            issues,
-            "Appeared candidates"
-        )
+        for cell_info in summary_cells:
+            coordinate = cell_info["coordinate"]
+            label = cell_info["label"]
 
-        self._check_number(
-            tabular_ws,
-            "C10",
-            passed,
-            issues,
-            "Passed candidates"
-        )
-
-        self._check_number(
-            tabular_ws,
-            "F8",
-            male,
-            issues,
-            "Male candidates"
-        )
-
-        self._check_number(
-            tabular_ws,
-            "G8",
-            female,
-            issues,
-            "Female candidates"
-        )
+            if label == "enrolled":
+                self._check_number(
+                    tabular_ws,
+                    coordinate,
+                    enrolled,
+                    issues,
+                    "Enrolled candidates"
+                )
+            elif label == "appeared":
+                self._check_number(
+                    tabular_ws,
+                    coordinate,
+                    appeared,
+                    issues,
+                    "Appeared candidates"
+                )
+            elif label == "passed":
+                self._check_number(
+                    tabular_ws,
+                    coordinate,
+                    passed,
+                    issues,
+                    "Passed candidates"
+                )
+            elif label == "male":
+                self._check_number(
+                    tabular_ws,
+                    coordinate,
+                    male,
+                    issues,
+                    "Male candidates"
+                )
+            elif label == "female":
+                self._check_number(
+                    tabular_ws,
+                    coordinate,
+                    female,
+                    issues,
+                    "Female candidates"
+                )
 
     # ======================================================
     # Helpers
@@ -409,11 +418,19 @@ class StatisticsValidator:
         if actual is None:
             return
 
-        if not self._is_numeric(actual):
+        # Per confirmed validation rules: Accept valid pass-criteria
+        # representations such as decimals, percentages, numeric values,
+        # and textual representations. Validate the meaning/value rather
+        # than relying only on formatting.
+        
+        # Convert actual value to numeric if it's a percentage or text representation
+        numeric_actual = self._normalize_to_numeric(actual)
+        
+        if numeric_actual is None:
             return
 
         if abs(
-            float(actual) - float(expected)
+            numeric_actual - float(expected)
         ) > tolerance:
 
             issues.append({
@@ -430,10 +447,48 @@ class StatisticsValidator:
                     6
                 ),
                 "actual": round(
-                    float(actual),
+                    numeric_actual,
                     6
                 ),
             })
+
+    def _normalize_to_numeric(self, value):
+        """
+        Normalize various pass-criteria representations to numeric value.
+        
+        Per confirmed validation rules: Accept valid pass-criteria
+        representations such as decimals, percentages, numeric values,
+        and textual representations. Validate the meaning/value rather
+        than relying only on formatting.
+        """
+        if self._is_numeric(value):
+            return float(value)
+        
+        if isinstance(value, str):
+            value = value.strip()
+            
+            # Handle percentage format (e.g., "80%", "80.5%")
+            if value.endswith("%"):
+                try:
+                    return float(value.rstrip("%")) / 100
+                except ValueError:
+                    pass
+            
+            # Handle text representations (e.g., "80 percent", "80.5 percent")
+            if "percent" in value.lower():
+                try:
+                    num_part = value.lower().replace("percent", "").strip()
+                    return float(num_part) / 100
+                except ValueError:
+                    pass
+            
+            # Handle decimal text (e.g., "0.8", "0.805")
+            try:
+                return float(value)
+            except ValueError:
+                pass
+        
+        return None
 
     def _find_nos_start_row(self, tabular_ws):
         """Find the row where NOS statistics begin in Tabular sheet."""
@@ -464,3 +519,65 @@ class StatisticsValidator:
             return nos_summary_row + 2
         
         return None
+
+    def _find_summary_cells(self, tabular_ws):
+        """
+        Dynamically locate summary cells based on labels/headers.
+        
+        Returns list of dicts with 'coordinate' and 'label' for:
+        - Enrolled candidates
+        - Appeared candidates
+        - Passed candidates
+        - Male candidates
+        - Female candidates
+        
+        Per confirmed validation rules, summary values do not have
+        to be located at fixed cells. This method searches for
+        labels and identifies the corresponding value cells.
+        """
+        summary_cells = []
+        
+        # Common label patterns to search for
+        label_patterns = {
+            "enrolled": ["enrolled", "total enrolled", "enrolled candidates"],
+            "appeared": ["appeared", "total appeared", "appeared candidates"],
+            "passed": ["passed", "total passed", "passed candidates"],
+            "male": ["male", "male candidates", "total male"],
+            "female": ["female", "female candidates", "total female"],
+        }
+        
+        # Search first 30 rows for labels
+        for row in range(1, min(tabular_ws.max_row, 30) + 1):
+            for col in range(1, min(tabular_ws.max_column, 10) + 1):
+                cell_value = tabular_ws.cell(row, col).value
+                if cell_value is None:
+                    continue
+                
+                normalized = str(cell_value).strip().lower()
+                
+                # Check if this cell matches any label pattern
+                for label_type, patterns in label_patterns.items():
+                    if any(pattern in normalized for pattern in patterns):
+                        # Found a label, check the cell to the right for the value
+                        value_col = col + 1
+                        if value_col <= tabular_ws.max_column:
+                            coordinate = tabular_ws.cell(row, value_col).coordinate
+                            summary_cells.append({
+                                "coordinate": coordinate,
+                                "label": label_type,
+                            })
+                            # Remove this label from patterns to avoid duplicates
+                            label_patterns[label_type] = []
+        
+        # Fallback to default positions if dynamic detection fails
+        if not summary_cells:
+            # Use traditional positions as fallback
+            summary_cells = [
+                {"coordinate": "C8", "label": "enrolled"},
+                {"coordinate": "C9", "label": "appeared"},
+                {"coordinate": "C10", "label": "passed"},
+                {"coordinate": "F8", "label": "male"},
+                {"coordinate": "G8", "label": "female"},
+            ]
+        
+        return summary_cells

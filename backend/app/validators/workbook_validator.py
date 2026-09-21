@@ -18,28 +18,41 @@ class WorkbookValidator:
         "Analysis - Graph",
     }
 
+    # Per confirmed validation rules: Graph sheets are optional
+    # Do not fail a workbook merely because a Graph sheet is absent
+    OPTIONAL_SHEETS = {
+        "Batch Analysis - Graph",
+        "Analysis - Graph",
+    }
+
     def validate(
         self,
         workbook,
         issues,
         template=None,
     ):
-        existing_sheets = set(workbook.sheetnames)
+        # Per confirmed validation rules: ignore hidden sheets completely
+        # Validation should focus only on the three relevant visible sheets
+        existing_sheets = set(
+            sheet_name
+            for sheet_name in workbook.sheetnames
+            if not workbook[sheet_name].sheet_state == 'hidden'
+        )
 
         # --------------------------------------------------
         # Empty workbook
         # --------------------------------------------------
 
-        if not workbook.sheetnames:
+        if not existing_sheets:
 
             issues.append({
                 "code": "NO_SHEETS",
                 "category": "Workbook Structure",
-                "message": "Workbook contains no worksheets.",
+                "message": "Workbook contains no visible worksheets.",
                 "sheet": None,
                 "cell": None,
-                "expected": "At least one worksheet",
-                "actual": "0 worksheets",
+                "expected": "At least one visible worksheet",
+                "actual": "0 visible worksheets",
             })
 
             return
@@ -50,14 +63,14 @@ class WorkbookValidator:
 
         if template == "LEGACY_RESULT":
 
-            required_sheets = self.LEGACY_REQUIRED_SHEETS
+            required_sheets = self.LEGACY_REQUIRED_SHEETS - self.OPTIONAL_SHEETS
 
         elif template in {
             "STANDARD",
             "ALTERNATE_SCORE",
         }:
 
-            required_sheets = self.STANDARD_REQUIRED_SHEETS
+            required_sheets = self.STANDARD_REQUIRED_SHEETS - self.OPTIONAL_SHEETS
 
         else:
 

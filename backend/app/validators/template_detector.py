@@ -10,7 +10,13 @@ class TemplateDetector:
 
     def detect(self, workbook):
 
-        sheets = set(workbook.sheetnames)
+        # Per confirmed validation rules: ignore hidden sheets completely
+        # Validation should focus only on the three relevant visible sheets
+        visible_sheets = set(
+            sheet_name
+            for sheet_name in workbook.sheetnames
+            if not workbook[sheet_name].sheet_state == 'hidden'
+        )
 
         # --------------------------------------------------
         # Legacy Result / PC-Wise template
@@ -20,7 +26,7 @@ class TemplateDetector:
             "Result",
             "Analysis-Tabular",
             "Analysis - Graph",
-        }.issubset(sheets):
+        }.issubset(visible_sheets):
 
             return self.TEMPLATE_LEGACY_RESULT
 
@@ -28,7 +34,7 @@ class TemplateDetector:
         # score_sheet based templates
         # --------------------------------------------------
 
-        if "score_sheet" not in sheets:
+        if "score_sheet" not in visible_sheets:
             return None
 
         score_ws = workbook["score_sheet"]
