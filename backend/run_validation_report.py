@@ -172,15 +172,20 @@ def main():
                 print(f"  {instruction}")
                 print()
         
-        # Generate CSV-style summary table
+        # Generate CSV-style summary table (truncated to first 5 items per workbook for readability)
         print(f"\n{'='*80}")
-        print("CONSOLIDATED REVIEW TABLE")
+        print("CONSOLIDATED REVIEW TABLE (Sample - first 5 items per workbook)")
         print(f"{'='*80}\n")
         print("Workbook | Status | Review Type | Sheet | Cell | Actual Value | Review Instruction")
         print("-" * 200)
         
         for result in review_workbooks:
+            count = 0
             for review_item in result.get("review_items", []):
+                if count >= 5:  # Show only first 5 per workbook
+                    print(f"{result['filename'][:20]} | {result['status'][:6]} | ... ({result['review_count'] - 5} more items)")
+                    break
+                
                 review_type = review_item.get('code')
                 instruction = ""
                 
@@ -193,10 +198,57 @@ def main():
                 else:
                     instruction = "Manual review required"
                 
-                actual_val = str(review_item.get('actual', 'N/A'))[:30]  # Truncate long values
+                actual_val = str(review_item.get('actual', 'N/A'))[:20]  # Truncate long values
                 print(f"{result['filename'][:20]} | {result['status'][:6]} | {review_type[:25]} | {review_item.get('sheet', 'N/A')[:20]} | {review_item.get('cell', 'N/A')[:10]} | {actual_val} | {instruction}")
+                count += 1
         
         print(f"\n{'='*80}")
+        print(f"Full review details available in: review_evidence_report.txt")
+        print(f"{'='*80}")
+        
+        # Write full review evidence to file
+        review_report_path = Path("/Users/akshitgoel/Desktop/office/assessment_report_validator/review_evidence_report.txt")
+        with open(review_report_path, "w") as f:
+            f.write("=" * 80 + "\n")
+            f.write("REVIEW EVIDENCE REPORT - FULL DETAILS\n")
+            f.write("=" * 80 + "\n\n")
+            f.write(f"Generated: {datetime.now().isoformat()}\n")
+            f.write(f"Total workbooks requiring review: {len(review_workbooks)}\n\n")
+            
+            for result in review_workbooks:
+                f.write("=" * 80 + "\n")
+                f.write(f"Workbook: {result['filename']}\n")
+                f.write(f"Status: {result['status']}\n")
+                f.write(f"Template: {result.get('template', 'N/A')}\n")
+                f.write(f"Total Review Items: {result['review_count']}\n")
+                f.write("=" * 80 + "\n\n")
+                
+                for i, review_item in enumerate(result.get("review_items", []), 1):
+                    f.write(f"Review Item #{i}:\n")
+                    f.write(f"  Type: {review_item.get('code')}\n")
+                    f.write(f"  Sheet: {review_item.get('sheet', 'N/A')}\n")
+                    f.write(f"  Cell: {review_item.get('cell', 'N/A')}\n")
+                    f.write(f"  Actual Value: {review_item.get('actual', 'N/A')}\n")
+                    f.write(f"  Expected: {review_item.get('expected', 'N/A')}\n")
+                    f.write(f"  Message: {review_item.get('message')}\n")
+                    
+                    review_type = review_item.get('code')
+                    instruction = ""
+                    
+                    if review_type == "HARDCODED_SUMMARY_REVIEW":
+                        instruction = "What the reviewer needs to check: Compare the hardcoded summary value against the underlying candidate data to verify accuracy."
+                    elif review_type == "HARDCODED_PASS_FAIL_REVIEW":
+                        instruction = "What the reviewer needs to check: Find the declared pass criterion in the workbook and verify that the hardcoded Pass/Fail values correspond to the candidate scores."
+                    elif review_type == "NOS_STATISTIC_REVIEW":
+                        instruction = "What the reviewer needs to check: Verify that the hardcoded NOS statistic matches the underlying candidate/NOS assessment data."
+                    else:
+                        instruction = "What the reviewer needs to check: Review the item manually to verify correctness."
+                    
+                    f.write(f"  {instruction}\n\n")
+                
+                f.write("\n")
+        
+        print(f"Full review evidence written to: {review_report_path}")
     else:
         print("\nNo workbooks require review.")
 
