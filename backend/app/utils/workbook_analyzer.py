@@ -319,10 +319,10 @@ class WorkbookAnalyzer:
         Returns:
             Pass criteria as a decimal (e.g., 0.8 for 80%) or None if not found
         """
-        # Search for pass criteria indicators
+        # Search for pass criteria indicators in metadata area only (first 15 rows)
         pass_criteria_keywords = ["pass criteria", "passing score", "threshold", "passing %"]
         
-        for row in range(1, min(worksheet.max_row, 30) + 1):
+        for row in range(1, min(worksheet.max_row, 15) + 1):
             for col in range(1, min(worksheet.max_column, 10) + 1):
                 value = worksheet.cell(row, col).value
                 if value is None:
@@ -342,18 +342,7 @@ class WorkbookAnalyzer:
                                 if criteria is not None:
                                     return criteria
         
-        # If not found in labels, check score headers for embedded criteria
-        for row in range(1, min(worksheet.max_row, 20) + 1):
-            for col in range(1, worksheet.max_column + 1):
-                value = worksheet.cell(row, col).value
-                if value is None:
-                    continue
-                
-                # Look for patterns like "80/100" or "80%"
-                criteria = WorkbookAnalyzer.parse_pass_criteria(value)
-                if criteria is not None:
-                    return criteria
-        
+        # Only detect from explicitly labeled cells, not arbitrary score values
         return None
     
     @staticmethod

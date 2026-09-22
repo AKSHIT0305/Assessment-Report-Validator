@@ -337,6 +337,16 @@ class DataValidator:
                 maximum_score = score_info[
                     "max_score"
                 ]
+                
+                nos = score_info.get("nos", "")
+                header = score_info.get("header", "")
+                
+                # Skip range validation for aggregate/total columns
+                # These columns contain summed values (e.g., "SSC/N0202- Total", "QP-Total")
+                # and legitimately exceed individual score ranges
+                # Check both the extracted NOS name and the original header
+                if "total" in nos.lower() or "total" in header.lower():
+                    continue
 
                 value = ws.cell(
                     row,

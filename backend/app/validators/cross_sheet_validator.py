@@ -73,15 +73,24 @@ class CrossSheetValidator:
         batch_id_cell = WorkbookAnalyzer.find_batch_id_cell(tabular_ws)
 
         if batch_id_cell:
-            batch_id = score_ws.cell(
+            batch_id_raw = score_ws.cell(
                 candidate_rows[0],
                 batch_id_col
             ).value
+            
+            # Resolve formula in score_sheet if present
+            batch_id = self._resolve_formula(
+                batch_id_raw,
+                workbook,
+                max_depth=5,
+                current_sheet=primary_sheet_name
+            )
 
             tabular_batch_id = self._resolve_formula(
                 tabular_ws[batch_id_cell].value,
                 workbook,
-                max_depth=5
+                max_depth=5,
+                current_sheet=tabular_sheet_name
             )
 
             # If the cell is actually a label/header, don't compare it.
@@ -139,7 +148,8 @@ class CrossSheetValidator:
             resolved_nos = self._resolve_formula(
                 nos_value,
                 workbook,
-                max_depth=3
+                max_depth=3,
+                current_sheet=tabular_sheet_name
             )
             
             if resolved_nos is None:
@@ -318,7 +328,8 @@ class CrossSheetValidator:
         value,
         workbook,
         max_depth=5,
-        visited=None
+        visited=None,
+        current_sheet=None
     ):
         """
         Resolve Excel cell references recursively.
@@ -333,6 +344,7 @@ class CrossSheetValidator:
             workbook: The workbook object
             max_depth: Maximum recursion depth to prevent infinite loops
             visited: Set of already visited cell references to prevent cycles
+            current_sheet: The current sheet name for same-sheet references
         """
         if visited is None:
             visited = set()
@@ -372,18 +384,30 @@ class CrossSheetValidator:
                 sheet_name
             ][cell_ref].value
         else:
-            # Same-sheet reference - assume current sheet context
-            # For this implementation, we can't resolve same-sheet references
-            # without knowing the current sheet, so return as-is
-            return value
+            # Same-sheet reference - use current_sheet if provided
+            if current_sheet and current_sheet in workbook.sheetnames:
+                resolved_value = workbook[current_sheet][formula].value
+            else:
+                # Can't resolve without current sheet context
+                return value
         
         # Recursively resolve if the resolved value is also a formula
         if isinstance(resolved_value, str) and resolved_value.startswith("="):
+            # Determine which sheet to use for the next resolution
+            # If we just came from a cross-sheet reference, use that sheet
+            # Otherwise, use the current_sheet parameter
+            if "!" in formula:
+                # We came from a cross-sheet reference, use that sheet
+                next_sheet = sheet_name
+            else:
+                # Same-sheet reference, use current_sheet
+                next_sheet = current_sheet
             return self._resolve_formula(
                 resolved_value,
                 workbook,
                 max_depth - 1,
-                visited
+                visited,
+                next_sheet
             )
         
         return resolved_value

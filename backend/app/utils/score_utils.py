@@ -199,7 +199,7 @@ def get_score_columns(ws):
                 1
             )[0].strip()
         elif _is_score_header_pattern(nos):
-            # Extract NOS from pattern like "SSC/N2204-100.0"
+            # Extract NOS from pattern like "SSC/N2204-100.0" or "DGT/VSQ/N0101-50.0"
             # Remove the score part at the end
             if "-" in nos:
                 nos = nos.rsplit("-", 1)[0].strip()
@@ -209,12 +209,23 @@ def get_score_columns(ws):
             "\n",
             1
         )[0].strip()
+        
+        # Strip trailing dots and special characters (e.g., "SSC/N9014." -> "SSC/N9014")
+        nos = nos.rstrip(".-")
+        
+        # Additional cleanup: remove any trailing -Score or -Total that might remain
+        # (handles cases like "SSC/N3020- Score" where split didn't catch it)
+        if nos.endswith("-Score"):
+            nos = nos[:-6].strip()
+        if nos.endswith("-Total"):
+            nos = nos[:-6].strip()
 
         result.append({
             "score_column": score_column,
             "pass_fail_column": pass_fail_column,
             "nos": nos,
             "max_score": float(max_score),
+            "header": score_header,  # Store original header for aggregate detection
         })
 
     # If no Pass/Fail columns found, try to identify score columns independently
@@ -227,7 +238,7 @@ def get_score_columns(ws):
             normalized = str(header).strip().lower()
             
             # Check if this is a score column (with or without "score" word)
-            if "score" in normalized or _is_score_header_pattern(header):
+            if "score" in normalized or "total" in normalized or _is_score_header_pattern(header):
                 score_column = column
                 
                 # Determine maximum score
@@ -262,19 +273,35 @@ def get_score_columns(ws):
                 nos = str(header).strip()
                 if " - Score" in nos:
                     nos = nos.split(" - Score", 1)[0].strip()
+                elif "- Score" in nos:
+                    nos = nos.split("- Score", 1)[0].strip()
                 elif "-Score" in nos:
                     nos = nos.split("-Score", 1)[0].strip()
+                elif " - Total" in nos:
+                    nos = nos.split(" - Total", 1)[0].strip()
+                elif "- Total" in nos:
+                    nos = nos.split("- Total", 1)[0].strip()
                 elif _is_score_header_pattern(nos):
                     if "-" in nos:
                         nos = nos.rsplit("-", 1)[0].strip()
                 
                 nos = nos.split("\n", 1)[0].strip()
                 
+                # Strip trailing dots and special characters
+                nos = nos.rstrip(".-")
+                
+                # Additional cleanup for remaining suffixes
+                if nos.endswith("-Score"):
+                    nos = nos[:-6].strip()
+                if nos.endswith("-Total"):
+                    nos = nos[:-6].strip()
+                
                 result.append({
                     "score_column": score_column,
                     "pass_fail_column": None,  # No Pass/Fail column
                     "nos": nos,
                     "max_score": float(max_score),
+                    "header": header,  # Store original header for aggregate detection
                 })
 
     return result
@@ -290,6 +317,7 @@ def _extract_score_from_header(header):
     100
     SSC/N2204-100.0
     SSC/N2204-100
+    SSC/N0202- Total (legacy format)
     """
 
     if header is None:
@@ -303,6 +331,18 @@ def _extract_score_from_header(header):
 
     # First try the traditional "score" word pattern
     if "score" in header.lower():
+        matches = re.findall(
+            r"(\d+(?:\.\d+)?)",
+            header
+        )
+
+        if matches:
+            return float(
+                matches[-1]
+            )
+    
+    # Try "total" pattern for legacy format
+    if "total" in header.lower():
         matches = re.findall(
             r"(\d+(?:\.\d+)?)",
             header
