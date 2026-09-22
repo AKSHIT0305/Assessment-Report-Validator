@@ -1,5 +1,5 @@
-from backend.app.utils.sheet_mapper import SheetMapper
-from backend.app.utils.workbook_analyzer import WorkbookAnalyzer
+from app.utils.sheet_mapper import SheetMapper
+from app.utils.workbook_analyzer import WorkbookAnalyzer
 
 
 class TemplateDetector:

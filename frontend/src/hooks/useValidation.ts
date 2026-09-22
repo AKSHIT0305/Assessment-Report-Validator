@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import { validateFiles } from "../services/api";
 import type {
@@ -15,7 +15,7 @@ export function useValidation() {
   const [error, setError] = useState<string | null>(null);
 
 
-  const validate = async (files: File[]) => {
+  const validate = useCallback(async (files: File[]) => {
 
     if (!files || files.length === 0) {
 
@@ -36,11 +36,14 @@ export function useValidation() {
       return result;
 
     } catch (err) {
-
       const message =
         err instanceof Error
           ? err.message
           : "Something went wrong while validating the files.";
+
+      if (message) {
+        console.error("Validation error:", message);
+      }
 
       setError(message);
 
@@ -53,15 +56,15 @@ export function useValidation() {
       setLoading(false);
 
     }
-  };
+  }, []);
 
 
-  const reset = () => {
+  const reset = useCallback(() => {
 
     setData(null);
     setError(null);
 
-  };
+  }, []);
 
 
   return {

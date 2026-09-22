@@ -82,7 +82,7 @@ class WorkbookValidator:
             required_sheets = self.STANDARD_REQUIRED_SHEETS - self.OPTIONAL_SHEETS
         else:
             # Fallback: try to identify sheets dynamically
-            from backend.app.utils.sheet_mapper import SheetMapper
+            from app.utils.sheet_mapper import SheetMapper
             primary = SheetMapper.identify_primary_data_sheet(workbook)
             tabular = SheetMapper.identify_tabular_analysis_sheet(workbook)
             

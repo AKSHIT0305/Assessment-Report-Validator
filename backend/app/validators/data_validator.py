@@ -1,8 +1,8 @@
 from collections import Counter
 from datetime import datetime, date
 
-from backend.app.utils.score_utils import get_score_columns
-from backend.app.utils.sheet_mapper import SheetMapper
+from app.utils.score_utils import get_score_columns
+from app.utils.sheet_mapper import SheetMapper
 
 
 class DataValidator:

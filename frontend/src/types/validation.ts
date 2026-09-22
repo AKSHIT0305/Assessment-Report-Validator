@@ -38,3 +38,35 @@ export type ValidationResponse = {
 
   files: FileValidationResult[];
 };
+
+export type HistoryRecord = {
+  filename: string;
+  timestamp: string;
+  status: "PASS" | "ERROR" | "REVIEW";
+  template?: string | null;
+  error_count: number;
+  review_count: number;
+  validation_result: FileValidationResult;
+  review_state: "PENDING" | "VERIFIED" | "INCORRECT";
+};
+
+export type HistoryResponse = {
+  history: HistoryRecord[];
+  total: number;
+};
+
+export type ReviewStateFile = {
+  filename: string;
+  timestamp: string;
+  status: "PASS" | "ERROR" | "REVIEW";
+  template?: string | null;
+  error_count: number;
+  review_count: number;
+  review_state: "PENDING" | "VERIFIED" | "INCORRECT";
+  validation_result: FileValidationResult;
+};
+
+export type ReviewStateResponse = {
+  pending_files: ReviewStateFile[];
+  total: number;
+};

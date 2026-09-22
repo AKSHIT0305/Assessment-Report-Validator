@@ -13,14 +13,14 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from backend.app.validators.formula_validator import FormulaValidator
-from backend.app.validators.statistics_validator import StatisticsValidator
-from backend.app.validators.cross_sheet_validator import CrossSheetValidator
-from backend.app.validators.data_validator import DataValidator
-from backend.app.validators.workbook_validator import WorkbookValidator
-from backend.app.validators.template_detector import TemplateDetector
-from backend.app.utils.score_utils import get_score_columns
-from backend.app.services.excel_validator import ExcelValidator
+from app.validators.formula_validator import FormulaValidator
+from app.validators.statistics_validator import StatisticsValidator
+from app.validators.cross_sheet_validator import CrossSheetValidator
+from app.validators.data_validator import DataValidator
+from app.validators.workbook_validator import WorkbookValidator
+from app.validators.template_detector import TemplateDetector
+from app.utils.score_utils import get_score_columns
+from app.services.excel_validator import ExcelValidator
 
 
 class TestDynamicRowDetection:
@@ -199,7 +199,7 @@ class TestDynamicRowDetection:
         wb.close()
         
         # Test using the COMPLETE ExcelValidator pipeline (production code path)
-        from backend.app.services.excel_validator import ExcelValidator
+        from app.services.excel_validator import ExcelValidator
         excel_validator = ExcelValidator()
         result = excel_validator.validate(file_path)
         
@@ -299,7 +299,7 @@ class TestDynamicRowDetection:
         wb.close()
         
         # Test using the COMPLETE ExcelValidator pipeline (production code path)
-        from backend.app.services.excel_validator import ExcelValidator
+        from app.services.excel_validator import ExcelValidator
         excel_validator = ExcelValidator()
         result = excel_validator.validate(file_path)
         
@@ -700,7 +700,7 @@ class TestDynamicRowDetection:
         
         # Test using data_validator (which reports missing candidate IDs)
         from openpyxl import load_workbook
-        from backend.app.validators.data_validator import DataValidator
+        from app.validators.data_validator import DataValidator
         
         test_wb = load_workbook(file_path)
         issues = []

@@ -1,7 +1,7 @@
-from backend.app.utils.score_utils import get_score_columns
-from backend.app.utils.sheet_mapper import SheetMapper
-from backend.app.utils.workbook_analyzer import WorkbookAnalyzer
-from backend.app.utils.calculation_verifier import CalculationVerifier
+from app.utils.score_utils import get_score_columns
+from app.utils.sheet_mapper import SheetMapper
+from app.utils.workbook_analyzer import WorkbookAnalyzer
+from app.utils.calculation_verifier import CalculationVerifier
 
 
 class FormulaValidator:

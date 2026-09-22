@@ -9,7 +9,7 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from backend.app.utils.sheet_mapper import SheetMapper
+from app.utils.sheet_mapper import SheetMapper
 
 
 class TestSheetMapper:

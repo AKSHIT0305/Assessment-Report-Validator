@@ -2,14 +2,14 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
-from backend.app.validators.workbook_validator import WorkbookValidator
-from backend.app.validators.data_validator import DataValidator
-from backend.app.validators.formula_validator import FormulaValidator
-from backend.app.validators.statistics_validator import StatisticsValidator
-from backend.app.validators.excel_error_validator import ExcelErrorValidator
-from backend.app.validators.cross_sheet_validator import CrossSheetValidator
-from backend.app.validators.template_detector import TemplateDetector
-from backend.app.utils.sheet_mapper import SheetMapper
+from app.validators.workbook_validator import WorkbookValidator
+from app.validators.data_validator import DataValidator
+from app.validators.formula_validator import FormulaValidator
+from app.validators.statistics_validator import StatisticsValidator
+from app.validators.excel_error_validator import ExcelErrorValidator
+from app.validators.cross_sheet_validator import CrossSheetValidator
+from app.validators.template_detector import TemplateDetector
+from app.utils.sheet_mapper import SheetMapper
 
 
 class ExcelValidator:

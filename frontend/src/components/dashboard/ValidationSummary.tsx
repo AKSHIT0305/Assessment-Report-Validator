@@ -4,65 +4,34 @@ type ValidationSummaryProps = {
   data: ValidationResponse | null;
 };
 
-export default function ValidationSummary({
-  data,
-}: ValidationSummaryProps) {
+function ValidationSummary({ data }: ValidationSummaryProps) {
+  if (!data) return null;
 
-  if (!data) {
-    return (
-      <section>
-
-        <h2>Validation Summary</h2>
-
-        <p>0 / 0 files correct</p>
-        <p>Correct: 0</p>
-        <p>Incorrect: 0</p>
-        <p>Review: 0</p>
-        <p>Errors: 0</p>
-
-      </section>
-    );
-  }
-
-  const total = data.total_files;
-  const correct = data.summary.correct;
-  const incorrect = data.summary.incorrect;
-  const review = data.summary.review || 0;
-
-  const totalErrors = data.files.reduce(
-    (total, file) => total + file.errors.length,
-    0
-  );
+  const { summary, total_files } = data;
 
   return (
-    <section>
-
-      <h2>Validation Summary</h2>
-
-      <h3>
-        {correct} / {total} files are correct
-      </h3>
-
-      <p>
-        Correct: {correct}
-      </p>
-
-      <p>
-        Incorrect: {incorrect}
-      </p>
-
-      <p>
-        Review: {review}
-      </p>
-
-      <p>
-        Errors: {totalErrors}
-      </p>
-
-      <p>
-        Accuracy: {data.summary.percentage_correct}%
-      </p>
-
-    </section>
+    <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="text-sm text-gray-600 mb-1">Total Files</div>
+        <div className="text-3xl font-bold text-gray-800">{total_files}</div>
+      </div>
+      
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="text-sm text-gray-600 mb-1">PASS</div>
+        <div className="text-3xl font-bold text-green-600">{summary.correct}</div>
+      </div>
+      
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="text-sm text-gray-600 mb-1">REVIEW</div>
+        <div className="text-3xl font-bold text-yellow-600">{summary.review}</div>
+      </div>
+      
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="text-sm text-gray-600 mb-1">ERROR</div>
+        <div className="text-3xl font-bold text-red-600">{summary.incorrect}</div>
+      </div>
+    </div>
   );
 }
+
+export default ValidationSummary;
