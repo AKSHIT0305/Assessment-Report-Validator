@@ -57,6 +57,7 @@ def get_score_columns(ws):
 
             if (
                 "score" in normalized
+                or "total" in normalized
                 or _extract_score_from_header(value) is not None
                 or _is_score_header_pattern(value)
             ):
@@ -175,9 +176,26 @@ def get_score_columns(ws):
                 " - Score",
                 1
             )[0].strip()
+        elif "- Score" in nos:
+            nos = nos.split(
+                "- Score",
+                1
+            )[0].strip()
         elif "-Score" in nos:
             nos = nos.split(
                 "-Score",
+                1
+            )[0].strip()
+        elif " - Total" in nos:
+            # Legacy format: "SSC/N0202- Total"
+            nos = nos.split(
+                " - Total",
+                1
+            )[0].strip()
+        elif "- Total" in nos:
+            # Legacy format without space: "SSC/N0202- Total"
+            nos = nos.split(
+                "- Total",
                 1
             )[0].strip()
         elif _is_score_header_pattern(nos):

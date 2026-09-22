@@ -55,6 +55,12 @@ class TemplateDetector:
         )
 
         if header_row is None:
+            # If Candidate ID is not found, still try to detect template
+            # based on other headers so validation can proceed and report the issue
+            header_row = self._find_any_header_row(score_ws)
+        
+        if header_row is None:
+            # Still can't find any headers - return None (will be handled as validation error)
             return None
 
         headers = self._get_headers(
@@ -86,9 +92,11 @@ class TemplateDetector:
             or "assessmentdate" in headers
         )
 
+        # If Candidate ID is missing but other headers exist,
+        # still classify as ALTERNATE_SCORE so validation can proceed
+        # and report the missing Candidate ID as an error
         if (
             has_batch_id
-            and has_candidate_id
             and has_gender
             and has_assessment_date
         ):
@@ -165,6 +173,36 @@ class TemplateDetector:
                 }:
                     return row
 
+        return None
+
+    def _find_any_header_row(self, ws):
+        """
+        Find a header row by looking for any common assessment field.
+        Used when Candidate ID is missing but we still need to detect template.
+        """
+        for row in range(1, min(ws.max_row, 50) + 1):
+            for column in range(1, min(ws.max_column, 20) + 1):
+                value = ws.cell(row, column).value
+                if value is None:
+                    continue
+                
+                normalized = self._normalize(value)
+                
+                # Look for any common assessment field
+                if normalized in {
+                    "batch id",
+                    "batchid",
+                    "batch",
+                    "gender",
+                    "sex",
+                    "assessment date",
+                    "assessmentdate",
+                    "date of assessment",
+                    "trainee name",
+                    "score",
+                }:
+                    return row
+        
         return None
 
     def _get_headers(

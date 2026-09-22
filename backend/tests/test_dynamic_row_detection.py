@@ -206,9 +206,9 @@ class TestDynamicRowDetection:
         # Workbook should be REVIEW because Candidate ID cannot be found
         assert result["status"] == "REVIEW", f"Expected REVIEW status, got {result['status']}"
         
-        # Should have CANDIDATE_HEADER_NOT_FOUND error with REVIEW severity
-        candidate_header_errors = [e for e in result["errors"] if e.get("code") == "CANDIDATE_HEADER_NOT_FOUND"]
-        assert len(candidate_header_errors) > 0, "Should have CANDIDATE_HEADER_NOT_FOUND error"
+        # Should have CANDIDATE_HEADER_NOT_FOUND in review_items (not errors)
+        candidate_header_errors = [e for e in result["review_items"] if e.get("code") == "CANDIDATE_HEADER_NOT_FOUND"]
+        assert len(candidate_header_errors) > 0, "Should have CANDIDATE_HEADER_NOT_FOUND in review_items"
         assert candidate_header_errors[0].get("severity") == "REVIEW", "Should have REVIEW severity"
 
     def test_hidden_sheets_ignored(self):
@@ -298,22 +298,14 @@ class TestDynamicRowDetection:
         wb.save(file_path)
         wb.close()
         
-        # Test that additional NOS rows are allowed
-        from openpyxl import load_workbook
-        from backend.app.utils.sheet_mapper import SheetMapper
-        test_wb = load_workbook(file_path)
-        issues = []
-        
-        # Provide sheet mapping to ensure correct sheet identification
-        sheet_mapping = SheetMapper.get_mapping("STANDARD")
-        cross_sheet_validator = CrossSheetValidator()
-        cross_sheet_validator.validate(test_wb, issues, sheet_mapping=sheet_mapping)
+        # Test using the COMPLETE ExcelValidator pipeline (production code path)
+        from backend.app.services.excel_validator import ExcelValidator
+        excel_validator = ExcelValidator()
+        result = excel_validator.validate(file_path)
         
         # Should not have NOS mismatch errors for additional rows
-        nos_errors = [e for e in issues if e.get("code") == "NOS_MISMATCH"]
+        nos_errors = [e for e in result["errors"] if e.get("code") == "NOS_MISMATCH"]
         assert len(nos_errors) == 0, f"Should allow additional NOS-related rows: {nos_errors}"
-        
-        test_wb.close()
 
     def test_pass_criteria_representations(self):
         """Test that various pass-criteria representations are accepted."""
