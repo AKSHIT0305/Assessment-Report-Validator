@@ -319,8 +319,9 @@ class FormulaValidator:
             for column in "BCDEFG":
 
                 coordinate = f"{column}{row_index}"
+                col_num = self._column_letter_to_number(column)
 
-                value = tabular_ws[coordinate].value
+                value = tabular_ws.cell(row_index, col_num).value
 
                 # Check if the value is a formula (string starting with "=")
                 # or an ArrayFormula object which contains a formula
@@ -332,26 +333,40 @@ class FormulaValidator:
                     is_formula = True
                 elif hasattr(value, '__class__') and 'ArrayFormula' in str(value.__class__):
                     is_formula = True
+                
+                # Skip empty cells
+                if value is None or str(value).strip() == "":
+                    continue
 
                 if not is_formula:
-
+                    # Hardcoded value: mark as REVIEW
+                    # Per final rule clarification: correctly calculated hardcoded values are acceptable
+                    # For now, we mark as REVIEW since we don't have full independent verification
+                    # Future enhancement: implement CalculationVerifier for NOS statistics
                     issues.append({
-                        "code": "MISSING_NOS_FORMULA",
+                        "code": "NOS_STATISTIC_REVIEW",
                         "category": "Formula",
                         "message": (
-                            f"Expected NOS statistics "
-                            f"formula is missing from "
-                            f"{coordinate}."
+                            f"Hardcoded NOS statistic at {coordinate} "
+                            f"cannot be independently verified. Manual review required."
                         ),
-                        "sheet": "Batch Analysis - Tabular",
+                        "sheet": tabular_sheet_name,
                         "cell": coordinate,
-                        "expected": "Excel formula",
+                        "expected": "Calculated from source data",
                         "actual": value,
+                        "severity": "REVIEW",
                     })
 
     # ======================================================
     # Helpers
     # ======================================================
+
+    def _column_letter_to_number(self, column_letter):
+        """Convert column letter to number (A=1, B=2, etc.)."""
+        result = 0
+        for char in column_letter.upper():
+            result = result * 26 + (ord(char) - ord('A') + 1)
+        return result
 
     def _find_header_row(self, ws):
         """Find the row containing 'Candidate ID' header."""

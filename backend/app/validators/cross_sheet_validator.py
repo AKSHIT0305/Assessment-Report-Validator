@@ -173,25 +173,31 @@ class CrossSheetValidator:
             expected_normalized = str(expected_nos).strip()
             found = False
             for tabular_nos in tabular_nos_list:
+                # Use fuzzy matching - the score NOS might have variations
+                # Try exact match first
                 if tabular_nos["nos"] == expected_normalized:
+                    found = True
+                    break
+                # Try substring match (e.g., "DGT/VSQ/N0101" matches "DGT/VSQ/N0101-50.0")
+                elif expected_normalized in tabular_nos["nos"] or tabular_nos["nos"] in expected_normalized:
                     found = True
                     break
             
             if not found:
-                missing_nos.append(expected_nos)
+                missing_nos.append(expected_normalized)
 
         if missing_nos:
-            for missing_nos in missing_nos:
+            for missing_nos_item in missing_nos:
                 issues.append({
                     "code": "NOS_MISMATCH",
                     "category": "Cross Sheet",
                     "message": (
-                        f"NOS '{missing_nos}' from {primary_sheet_name} "
+                        f"NOS '{missing_nos_item}' from {primary_sheet_name} "
                         f"is missing from {tabular_sheet_name}."
                     ),
                     "sheet": tabular_sheet_name,
                     "cell": None,
-                    "expected": missing_nos,
+                    "expected": missing_nos_item,
                     "actual": "Not found in tabular sheet",
                 })
 
@@ -307,18 +313,42 @@ class CrossSheetValidator:
 
             header = header.strip()
 
-            # Handle different score header patterns
-            if " - Score" in header:
-                nos = header.split(
-                    " - Score",
-                    1
-                )[0].strip()
-                nos_list.append(nos)
-            elif "-Score" in header:
-                nos = header.split(
-                    "-Score",
-                    1
-                )[0].strip()
+            # Handle different score header patterns with improved normalization
+            nos = header
+            
+            # First, remove max_score suffix (e.g., "DGT/VSQ/N0101-50.0" -> "DGT/VSQ/N0101")
+            # This handles cases where the max_score is embedded in the NOS code itself
+            if "-" in nos:
+                parts = nos.rsplit("-", 1)
+                if len(parts) == 2:
+                    suffix = parts[1].strip()
+                    # Check if suffix is a pure number (may contain decimal point)
+                    if suffix.replace(".", "").isdigit():
+                        nos = parts[0].strip()
+            
+            # Then split by "- Score" or "-Score"
+            if " - Score" in nos:
+                nos = nos.split(" - Score", 1)[0].strip()
+            elif "- Score" in nos:
+                nos = nos.split("- Score", 1)[0].strip()
+            elif "-Score" in nos:
+                nos = nos.split("-Score", 1)[0].strip()
+            elif " - Total" in nos:
+                nos = nos.split(" - Total", 1)[0].strip()
+            elif "- Total" in nos:
+                nos = nos.split("- Total", 1)[0].strip()
+            
+            # Strip trailing dots and special characters
+            nos = nos.rstrip(".-")
+            
+            # Additional cleanup for remaining suffixes
+            if nos.endswith("-Score"):
+                nos = nos[:-6].strip()
+            if nos.endswith("-Total"):
+                nos = nos[:-6].strip()
+            
+            # Only add if it looks like a NOS code (contains /)
+            if "/" in nos:
                 nos_list.append(nos)
 
         return nos_list

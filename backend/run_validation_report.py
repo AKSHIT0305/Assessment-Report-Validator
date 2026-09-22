@@ -128,6 +128,77 @@ def main():
         json.dump(report_data, f, indent=2)
     
     print(f"\nDetailed report saved to: {report_path}")
+    
+    # Generate consolidated review evidence report
+    print("\n" + "=" * 80)
+    print("REVIEW EVIDENCE REPORT")
+    print("=" * 80)
+    
+    review_workbooks = [r for r in results if r.get("review_count", 0) > 0]
+    
+    if review_workbooks:
+        print(f"\n{len(review_workbooks)} workbooks require review:\n")
+        
+        for result in review_workbooks:
+            print(f"\n{'='*80}")
+            print(f"Workbook: {result['filename']}")
+            print(f"Status: {result['status']}")
+            print(f"Template: {result.get('template', 'N/A')}")
+            print(f"Total Review Items: {result['review_count']}")
+            print(f"{'='*80}\n")
+            
+            for i, review_item in enumerate(result.get("review_items", []), 1):
+                print(f"Review Item #{i}:")
+                print(f"  Type: {review_item.get('code')}")
+                print(f"  Sheet: {review_item.get('sheet', 'N/A')}")
+                print(f"  Cell: {review_item.get('cell', 'N/A')}")
+                print(f"  Actual Value: {review_item.get('actual', 'N/A')}")
+                print(f"  Expected: {review_item.get('expected', 'N/A')}")
+                print(f"  Message: {review_item.get('message')}")
+                
+                # Generate plain-English review instruction
+                review_type = review_item.get('code')
+                instruction = ""
+                
+                if review_type == "HARDCODED_SUMMARY_REVIEW":
+                    instruction = "What the reviewer needs to check: Compare the hardcoded summary value against the underlying candidate data to verify accuracy."
+                elif review_type == "HARDCODED_PASS_FAIL_REVIEW":
+                    instruction = "What the reviewer needs to check: Find the declared pass criterion in the workbook and verify that the hardcoded Pass/Fail values correspond to the candidate scores."
+                elif review_type == "NOS_STATISTIC_REVIEW":
+                    instruction = "What the reviewer needs to check: Verify that the hardcoded NOS statistic matches the underlying candidate/NOS assessment data."
+                else:
+                    instruction = "What the reviewer needs to check: Review the item manually to verify correctness."
+                
+                print(f"  {instruction}")
+                print()
+        
+        # Generate CSV-style summary table
+        print(f"\n{'='*80}")
+        print("CONSOLIDATED REVIEW TABLE")
+        print(f"{'='*80}\n")
+        print("Workbook | Status | Review Type | Sheet | Cell | Actual Value | Review Instruction")
+        print("-" * 200)
+        
+        for result in review_workbooks:
+            for review_item in result.get("review_items", []):
+                review_type = review_item.get('code')
+                instruction = ""
+                
+                if review_type == "HARDCODED_SUMMARY_REVIEW":
+                    instruction = "Compare hardcoded summary against candidate data"
+                elif review_type == "HARDCODED_PASS_FAIL_REVIEW":
+                    instruction = "Verify Pass/Fail against declared pass criterion"
+                elif review_type == "NOS_STATISTIC_REVIEW":
+                    instruction = "Verify statistic matches assessment data"
+                else:
+                    instruction = "Manual review required"
+                
+                actual_val = str(review_item.get('actual', 'N/A'))[:30]  # Truncate long values
+                print(f"{result['filename'][:20]} | {result['status'][:6]} | {review_type[:25]} | {review_item.get('sheet', 'N/A')[:20]} | {review_item.get('cell', 'N/A')[:10]} | {actual_val} | {instruction}")
+        
+        print(f"\n{'='*80}")
+    else:
+        print("\nNo workbooks require review.")
 
 
 if __name__ == "__main__":

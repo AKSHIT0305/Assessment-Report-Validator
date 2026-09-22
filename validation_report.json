@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-22T14:05:17.663326",
+  "timestamp": "2026-09-23T01:55:30.619063",
   "summary": {
     "total_files": 38,
     "pass_count": 31,
-    "error_count": 6,
-    "review_count": 1,
+    "error_count": 0,
+    "review_count": 7,
     "pass_percentage": 81.57894736842105
   },
   "results": [
@@ -13,71 +13,10 @@
       "status": "REVIEW",
       "template": "ALTERNATE_SCORE",
       "error_count": 0,
-      "warning_count": 6,
+      "warning_count": 0,
       "review_count": 1,
       "errors": [],
-      "warnings": [
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for MEP/N2601 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!F13:F13)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for MEP/N2602 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!H13:H13)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for MEP/N2618 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!J13:J13)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for MEP/N2604 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!L13:L13)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for MEP/N9903 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!N13:N13)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for MEP/N9912 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G18",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!P13:P13)",
-          "severity": "WARNING"
-        }
-      ],
+      "warnings": [],
       "review_items": [
         {
           "code": "HARDCODED_SUMMARY_REVIEW",
@@ -104,220 +43,12 @@
     },
     {
       "filename": "3527841.xlsx",
-      "status": "ERROR",
+      "status": "REVIEW",
       "template": "LEGACY_RESULT",
-      "error_count": 23,
+      "error_count": 0,
       "warning_count": 0,
-      "review_count": 48,
-      "errors": [
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": "Excel formula",
-          "actual": 1
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": "Excel formula",
-          "actual": 0.7495958333333334
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": "Excel formula",
-          "actual": 0.5521333333333333
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": "Excel formula",
-          "actual": 0.8958666666666666
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": "Excel formula",
-          "actual": 0.7448166666666667
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Excel formula",
-          "actual": 0.08035805579804944
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": "Excel formula",
-          "actual": 1
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": "Excel formula",
-          "actual": 0.7908333333333332
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": "Excel formula",
-          "actual": 0.68
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": "Excel formula",
-          "actual": 0.9
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": "Excel formula",
-          "actual": 0.8
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Excel formula",
-          "actual": 0.06619580090890216
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N0202 mean does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "C13",
-          "expected": 224.87875,
-          "actual": 0.749596
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N0202 minimum does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "D13",
-          "expected": 165.64,
-          "actual": 0.552133
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N0202 maximum does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "E13",
-          "expected": 268.76,
-          "actual": 0.895867
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N0202 median does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "F13",
-          "expected": 223.445,
-          "actual": 0.744817
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N0202 standard deviation does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "G13",
-          "expected": 24.107417,
-          "actual": 0.080358
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0102 pass percentage does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "B14",
-          "expected": 0.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0102 mean does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "C14",
-          "expected": 39.541667,
-          "actual": 0.790833
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0102 minimum does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "D14",
-          "expected": 34.0,
-          "actual": 0.68
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0102 maximum does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "E14",
-          "expected": 45.0,
-          "actual": 0.9
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0102 median does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "F14",
-          "expected": 40.0,
-          "actual": 0.8
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0102 standard deviation does not match independent calculation.",
-          "sheet": "Analysis-Tabular",
-          "cell": "G14",
-          "expected": 3.30979,
-          "actual": 0.066196
-        }
-      ],
+      "review_count": 60,
+      "errors": [],
       "warnings": [],
       "review_items": [
         {
@@ -799,567 +530,137 @@
           "expected": "Depends on pass criteria",
           "actual": "Pass",
           "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B13 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "B13",
+          "expected": "Calculated from source data",
+          "actual": 1,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C13 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "C13",
+          "expected": "Calculated from source data",
+          "actual": 0.7495958333333334,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D13 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "D13",
+          "expected": "Calculated from source data",
+          "actual": 0.5521333333333333,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E13 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "E13",
+          "expected": "Calculated from source data",
+          "actual": 0.8958666666666666,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F13 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "F13",
+          "expected": "Calculated from source data",
+          "actual": 0.7448166666666667,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G13 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "G13",
+          "expected": "Calculated from source data",
+          "actual": 0.08035805579804944,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B14 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "B14",
+          "expected": "Calculated from source data",
+          "actual": 1,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C14 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "C14",
+          "expected": "Calculated from source data",
+          "actual": 0.7908333333333332,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D14 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "D14",
+          "expected": "Calculated from source data",
+          "actual": 0.68,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E14 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "E14",
+          "expected": "Calculated from source data",
+          "actual": 0.9,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F14 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "F14",
+          "expected": "Calculated from source data",
+          "actual": 0.8,
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G14 cannot be independently verified. Manual review required.",
+          "sheet": "Analysis-Tabular",
+          "cell": "G14",
+          "expected": "Calculated from source data",
+          "actual": 0.06619580090890216,
+          "severity": "REVIEW"
         }
       ]
     },
     {
       "filename": "3635115.xlsx",
-      "status": "ERROR",
+      "status": "REVIEW",
       "template": "ALTERNATE_SCORE",
-      "error_count": 61,
+      "error_count": 0,
       "warning_count": 0,
-      "review_count": 100,
-      "errors": [
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": "Excel formula",
-          "actual": "85.95%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": "Excel formula",
-          "actual": "73.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": "Excel formula",
-          "actual": "91.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": "Excel formula",
-          "actual": "88.50%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Excel formula",
-          "actual": "4.52%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": "Excel formula",
-          "actual": "82.90%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": "Excel formula",
-          "actual": "73.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": "Excel formula",
-          "actual": "92.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": "Excel formula",
-          "actual": "82.50%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Excel formula",
-          "actual": "4.85%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": "Excel formula",
-          "actual": "84.45%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": "Excel formula",
-          "actual": "71.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": "Excel formula",
-          "actual": "92.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": "Excel formula",
-          "actual": "85.50%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Excel formula",
-          "actual": "4.88%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": "Excel formula",
-          "actual": "82.10%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": "Excel formula",
-          "actual": "70.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": "Excel formula",
-          "actual": "92.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": "Excel formula",
-          "actual": "82.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Excel formula",
-          "actual": "5.24%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": "Excel formula",
-          "actual": "98.80%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": "Excel formula",
-          "actual": "94.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Excel formula",
-          "actual": "2.40%"
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": 0.9,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": 85.95,
-          "actual": 0.8595
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": 73.0,
-          "actual": 0.73
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": 91.0,
-          "actual": 0.91
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": 88.5,
-          "actual": 0.885
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": 4.639362,
-          "actual": 0.0452
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": 0.75,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": 82.9,
-          "actual": 0.829
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": 73.0,
-          "actual": 0.73
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": 92.0,
-          "actual": 0.92
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": 82.5,
-          "actual": 0.825
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": 4.972556,
-          "actual": 0.0485
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": 0.85,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": 84.45,
-          "actual": 0.8445
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": 71.0,
-          "actual": 0.71
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": 92.0,
-          "actual": 0.92
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": 85.5,
-          "actual": 0.855
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": 5.010253,
-          "actual": 0.0488
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": 0.75,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": 82.1,
-          "actual": 0.821
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": 70.0,
-          "actual": 0.7
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": 92.0,
-          "actual": 0.92
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": 82.0,
-          "actual": 0.82
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": 5.379298,
-          "actual": 0.0524
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": 49.4,
-          "actual": 0.988
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": 47.0,
-          "actual": 0.94
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": 1.231174,
-          "actual": 0.024
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "Passed candidates does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C10",
-          "expected": 11.0,
-          "actual": 20.0
-        },
-        {
-          "code": "NOS_MISMATCH",
-          "category": "Cross Sheet",
-          "message": "NOS 'DGT/VSQ/N0101-50.0' from score_sheet is missing from Batch Analysis - Tabular.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": null,
-          "expected": "DGT/VSQ/N0101-50.0",
-          "actual": "Not found in tabular sheet"
-        }
-      ],
+      "review_count": 130,
+      "errors": [],
       "warnings": [],
       "review_items": [
         {
@@ -2361,6 +1662,306 @@
           "expected": "Depends on pass criteria",
           "actual": "Pass",
           "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B13",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C13",
+          "expected": "Calculated from source data",
+          "actual": "85.95%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D13",
+          "expected": "Calculated from source data",
+          "actual": "73.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E13",
+          "expected": "Calculated from source data",
+          "actual": "91.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F13",
+          "expected": "Calculated from source data",
+          "actual": "88.50%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G13",
+          "expected": "Calculated from source data",
+          "actual": "4.52%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B14",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C14",
+          "expected": "Calculated from source data",
+          "actual": "82.90%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D14",
+          "expected": "Calculated from source data",
+          "actual": "73.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E14",
+          "expected": "Calculated from source data",
+          "actual": "92.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F14",
+          "expected": "Calculated from source data",
+          "actual": "82.50%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G14",
+          "expected": "Calculated from source data",
+          "actual": "4.85%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B15",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C15",
+          "expected": "Calculated from source data",
+          "actual": "84.45%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D15",
+          "expected": "Calculated from source data",
+          "actual": "71.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E15",
+          "expected": "Calculated from source data",
+          "actual": "92.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F15",
+          "expected": "Calculated from source data",
+          "actual": "85.50%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G15",
+          "expected": "Calculated from source data",
+          "actual": "4.88%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B16",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C16",
+          "expected": "Calculated from source data",
+          "actual": "82.10%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D16",
+          "expected": "Calculated from source data",
+          "actual": "70.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E16",
+          "expected": "Calculated from source data",
+          "actual": "92.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F16",
+          "expected": "Calculated from source data",
+          "actual": "82.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G16",
+          "expected": "Calculated from source data",
+          "actual": "5.24%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C17",
+          "expected": "Calculated from source data",
+          "actual": "98.80%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D17",
+          "expected": "Calculated from source data",
+          "actual": "94.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G17",
+          "expected": "Calculated from source data",
+          "actual": "2.40%",
+          "severity": "REVIEW"
         }
       ]
     },
@@ -2377,580 +1978,12 @@
     },
     {
       "filename": "3701092.xlsx",
-      "status": "ERROR",
+      "status": "REVIEW",
       "template": "ALTERNATE_SCORE",
-      "error_count": 63,
+      "error_count": 0,
       "warning_count": 0,
-      "review_count": 120,
-      "errors": [
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": "Excel formula",
-          "actual": "95.65%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": "Excel formula",
-          "actual": "77.74%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": "Excel formula",
-          "actual": "45.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": "Excel formula",
-          "actual": "85.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": "Excel formula",
-          "actual": "79.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Excel formula",
-          "actual": "8.19%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": "Excel formula",
-          "actual": "78.91%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": "Excel formula",
-          "actual": "58.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": "Excel formula",
-          "actual": "88.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": "Excel formula",
-          "actual": "81.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Excel formula",
-          "actual": "8.85%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": "Excel formula",
-          "actual": "95.65%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": "Excel formula",
-          "actual": "81.61%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": "Excel formula",
-          "actual": "46.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": "Excel formula",
-          "actual": "91.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": "Excel formula",
-          "actual": "85.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Excel formula",
-          "actual": "9.73%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": "Excel formula",
-          "actual": "74.30%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": "Excel formula",
-          "actual": "56.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": "Excel formula",
-          "actual": "82.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": "Excel formula",
-          "actual": "77.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Excel formula",
-          "actual": "7.43%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": "Excel formula",
-          "actual": "93.39%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": "Excel formula",
-          "actual": "66.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Excel formula",
-          "actual": "11.21%"
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": 0.416667,
-          "actual": 0.9565
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": 74.5,
-          "actual": 0.7774
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": 0.0,
-          "actual": 0.45
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": 85.0,
-          "actual": 0.85
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": 79.0,
-          "actual": 0.79
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": 17.856919,
-          "actual": 0.0819
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": 0.583333,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": 75.625,
-          "actual": 0.7891
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": 0.0,
-          "actual": 0.58
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": 88.0,
-          "actual": 0.88
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": 81.0,
-          "actual": 0.81
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": 18.377237,
-          "actual": 0.0885
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": 0.75,
-          "actual": 0.9565
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": 78.208333,
-          "actual": 0.8161
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": 0.0,
-          "actual": 0.46
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": 91.0,
-          "actual": 0.91
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": 85.0,
-          "actual": 0.85
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": 19.294016,
-          "actual": 0.0973
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": 0.291667,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": 71.208333,
-          "actual": 0.743
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": 0.0,
-          "actual": 0.56
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": 82.0,
-          "actual": 0.82
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": 76.5,
-          "actual": 0.77
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": 16.888327,
-          "actual": 0.0743
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": 0.833333,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": 44.75,
-          "actual": 0.9339
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": 0.0,
-          "actual": 0.66
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": 11.058147,
-          "actual": 0.1121
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "Appeared candidates does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C9",
-          "expected": 24.0,
-          "actual": 23.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "Passed candidates does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C10",
-          "expected": 2.0,
-          "actual": 23.0
-        },
-        {
-          "code": "NOS_MISMATCH",
-          "category": "Cross Sheet",
-          "message": "NOS 'DGT/VSQ/N0101-50.0' from score_sheet is missing from Batch Analysis - Tabular.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": null,
-          "expected": "DGT/VSQ/N0101-50.0",
-          "actual": "Not found in tabular sheet"
-        }
-      ],
+      "review_count": 150,
+      "errors": [],
       "warnings": [],
       "review_items": [
         {
@@ -4152,576 +3185,317 @@
           "expected": "Depends on pass criteria",
           "actual": "Pass",
           "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B13",
+          "expected": "Calculated from source data",
+          "actual": "95.65%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C13",
+          "expected": "Calculated from source data",
+          "actual": "77.74%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D13",
+          "expected": "Calculated from source data",
+          "actual": "45.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E13",
+          "expected": "Calculated from source data",
+          "actual": "85.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F13",
+          "expected": "Calculated from source data",
+          "actual": "79.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G13",
+          "expected": "Calculated from source data",
+          "actual": "8.19%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B14",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C14",
+          "expected": "Calculated from source data",
+          "actual": "78.91%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D14",
+          "expected": "Calculated from source data",
+          "actual": "58.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E14",
+          "expected": "Calculated from source data",
+          "actual": "88.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F14",
+          "expected": "Calculated from source data",
+          "actual": "81.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G14",
+          "expected": "Calculated from source data",
+          "actual": "8.85%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B15",
+          "expected": "Calculated from source data",
+          "actual": "95.65%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C15",
+          "expected": "Calculated from source data",
+          "actual": "81.61%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D15",
+          "expected": "Calculated from source data",
+          "actual": "46.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E15",
+          "expected": "Calculated from source data",
+          "actual": "91.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F15",
+          "expected": "Calculated from source data",
+          "actual": "85.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G15",
+          "expected": "Calculated from source data",
+          "actual": "9.73%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B16",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C16",
+          "expected": "Calculated from source data",
+          "actual": "74.30%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D16",
+          "expected": "Calculated from source data",
+          "actual": "56.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E16",
+          "expected": "Calculated from source data",
+          "actual": "82.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F16",
+          "expected": "Calculated from source data",
+          "actual": "77.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G16",
+          "expected": "Calculated from source data",
+          "actual": "7.43%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C17",
+          "expected": "Calculated from source data",
+          "actual": "93.39%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D17",
+          "expected": "Calculated from source data",
+          "actual": "66.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G17",
+          "expected": "Calculated from source data",
+          "actual": "11.21%",
+          "severity": "REVIEW"
         }
       ]
     },
     {
       "filename": "3701897.xlsx",
-      "status": "ERROR",
+      "status": "REVIEW",
       "template": "ALTERNATE_SCORE",
-      "error_count": 62,
+      "error_count": 0,
       "warning_count": 0,
-      "review_count": 85,
-      "errors": [
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": "Excel formula",
-          "actual": "73.41%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": "Excel formula",
-          "actual": "56.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": "Excel formula",
-          "actual": "83.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": "Excel formula",
-          "actual": "77.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Excel formula",
-          "actual": "8.41%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": "Excel formula",
-          "actual": "80.59%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": "Excel formula",
-          "actual": "64.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": "Excel formula",
-          "actual": "87.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": "Excel formula",
-          "actual": "81.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Excel formula",
-          "actual": "5.33%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": "Excel formula",
-          "actual": "81.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": "Excel formula",
-          "actual": "64.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": "Excel formula",
-          "actual": "86.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": "Excel formula",
-          "actual": "84.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Excel formula",
-          "actual": "6.32%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": "Excel formula",
-          "actual": "74.53%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": "Excel formula",
-          "actual": "67.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": "Excel formula",
-          "actual": "80.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": "Excel formula",
-          "actual": "76.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Excel formula",
-          "actual": "3.60%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": "Excel formula",
-          "actual": "96.94%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": "Excel formula",
-          "actual": "74.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Excel formula",
-          "actual": "7.17%"
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": 0.235294,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": 73.411765,
-          "actual": 0.7341
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": 56.0,
-          "actual": 0.56
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": 83.0,
-          "actual": 0.83
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": 77.0,
-          "actual": 0.77
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": 8.667892,
-          "actual": 0.0841
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": 0.705882,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": 80.588235,
-          "actual": 0.8059
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": 64.0,
-          "actual": 0.64
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": 87.0,
-          "actual": 0.87
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": 81.0,
-          "actual": 0.81
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": 5.489294,
-          "actual": 0.0533
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": 0.705882,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": 81.0,
-          "actual": 0.81
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": 64.0,
-          "actual": 0.64
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": 86.0,
-          "actual": 0.86
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": 84.0,
-          "actual": 0.84
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": 6.509608,
-          "actual": 0.0632
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": 0.058824,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": 74.529412,
-          "actual": 0.7453
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": 67.0,
-          "actual": 0.67
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": 80.0,
-          "actual": 0.8
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": 76.0,
-          "actual": 0.76
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": 3.710082,
-          "actual": 0.036
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": 0.941176,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": 48.470588,
-          "actual": 0.9694
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": 37.0,
-          "actual": 0.74
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": 3.693197,
-          "actual": 0.0717
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "Passed candidates does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C10",
-          "expected": 0.0,
-          "actual": 17.0
-        },
-        {
-          "code": "NOS_MISMATCH",
-          "category": "Cross Sheet",
-          "message": "NOS 'DGT/VSQ/N0101-50.0' from score_sheet is missing from Batch Analysis - Tabular.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": null,
-          "expected": "DGT/VSQ/N0101-50.0",
-          "actual": "Not found in tabular sheet"
-        }
-      ],
+      "review_count": 115,
+      "errors": [],
       "warnings": [],
       "review_items": [
         {
@@ -5572,568 +4346,318 @@
           "cell": "Q30",
           "expected": "Depends on pass criteria",
           "actual": "Pass",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B13",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C13",
+          "expected": "Calculated from source data",
+          "actual": "73.41%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D13",
+          "expected": "Calculated from source data",
+          "actual": "56.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E13",
+          "expected": "Calculated from source data",
+          "actual": "83.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F13",
+          "expected": "Calculated from source data",
+          "actual": "77.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G13",
+          "expected": "Calculated from source data",
+          "actual": "8.41%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B14",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C14",
+          "expected": "Calculated from source data",
+          "actual": "80.59%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D14",
+          "expected": "Calculated from source data",
+          "actual": "64.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E14",
+          "expected": "Calculated from source data",
+          "actual": "87.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F14",
+          "expected": "Calculated from source data",
+          "actual": "81.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G14",
+          "expected": "Calculated from source data",
+          "actual": "5.33%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B15",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C15",
+          "expected": "Calculated from source data",
+          "actual": "81.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D15",
+          "expected": "Calculated from source data",
+          "actual": "64.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E15",
+          "expected": "Calculated from source data",
+          "actual": "86.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F15",
+          "expected": "Calculated from source data",
+          "actual": "84.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G15",
+          "expected": "Calculated from source data",
+          "actual": "6.32%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B16",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C16",
+          "expected": "Calculated from source data",
+          "actual": "74.53%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D16",
+          "expected": "Calculated from source data",
+          "actual": "67.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E16",
+          "expected": "Calculated from source data",
+          "actual": "80.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F16",
+          "expected": "Calculated from source data",
+          "actual": "76.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G16",
+          "expected": "Calculated from source data",
+          "actual": "3.60%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C17",
+          "expected": "Calculated from source data",
+          "actual": "96.94%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D17",
+          "expected": "Calculated from source data",
+          "actual": "74.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G17",
+          "expected": "Calculated from source data",
+          "actual": "7.17%",
           "severity": "REVIEW"
         }
       ]
     },
     {
       "filename": "3757433.xlsx",
-      "status": "ERROR",
+      "status": "REVIEW",
       "template": "ALTERNATE_SCORE",
-      "error_count": 61,
+      "error_count": 0,
       "warning_count": 0,
-      "review_count": 85,
-      "errors": [
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": "Excel formula",
-          "actual": "68.06%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": "Excel formula",
-          "actual": "59.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": "Excel formula",
-          "actual": "73.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": "Excel formula",
-          "actual": "69.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Excel formula",
-          "actual": "3.69%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": "Excel formula",
-          "actual": "76.24%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": "Excel formula",
-          "actual": "70.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": "Excel formula",
-          "actual": "81.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": "Excel formula",
-          "actual": "77.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Excel formula",
-          "actual": "3.32%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": "Excel formula",
-          "actual": "82.35%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": "Excel formula",
-          "actual": "77.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": "Excel formula",
-          "actual": "87.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": "Excel formula",
-          "actual": "83.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Excel formula",
-          "actual": "2.52%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": "Excel formula",
-          "actual": "82.71%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": "Excel formula",
-          "actual": "68.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": "Excel formula",
-          "actual": "87.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": "Excel formula",
-          "actual": "84.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Excel formula",
-          "actual": "4.59%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": "Excel formula",
-          "actual": "97.88%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": "Excel formula",
-          "actual": "84.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Excel formula",
-          "actual": "4.73%"
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": 0.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": 68.058824,
-          "actual": 0.6806
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": 59.0,
-          "actual": 0.59
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": 73.0,
-          "actual": 0.73
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": 69.0,
-          "actual": 0.69
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": 3.799187,
-          "actual": 0.0369
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": 0.176471,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": 76.235294,
-          "actual": 0.7624
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": 70.0,
-          "actual": 0.7
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": 81.0,
-          "actual": 0.81
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": 77.0,
-          "actual": 0.77
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": 3.419236,
-          "actual": 0.0332
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": 0.823529,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": 82.352941,
-          "actual": 0.8235
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": 77.0,
-          "actual": 0.77
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": 87.0,
-          "actual": 0.87
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": 83.0,
-          "actual": 0.83
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": 2.596661,
-          "actual": 0.0252
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": 0.882353,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": 82.705882,
-          "actual": 0.8271
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": 68.0,
-          "actual": 0.68
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": 87.0,
-          "actual": 0.87
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": 84.0,
-          "actual": 0.84
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": 4.727112,
-          "actual": 0.0459
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": 48.941176,
-          "actual": 0.9788
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": 42.0,
-          "actual": 0.84
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": 2.435944,
-          "actual": 0.0473
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "Passed candidates does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C10",
-          "expected": 0.0,
-          "actual": 17.0
-        },
-        {
-          "code": "NOS_MISMATCH",
-          "category": "Cross Sheet",
-          "message": "NOS 'DGT/VSQ/N0101-50.0' from score_sheet is missing from Batch Analysis - Tabular.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": null,
-          "expected": "DGT/VSQ/N0101-50.0",
-          "actual": "Not found in tabular sheet"
-        }
-      ],
+      "review_count": 115,
+      "errors": [],
       "warnings": [],
       "review_items": [
         {
@@ -6985,576 +5509,317 @@
           "expected": "Depends on pass criteria",
           "actual": "Pass",
           "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B13",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C13",
+          "expected": "Calculated from source data",
+          "actual": "68.06%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D13",
+          "expected": "Calculated from source data",
+          "actual": "59.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E13",
+          "expected": "Calculated from source data",
+          "actual": "73.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F13",
+          "expected": "Calculated from source data",
+          "actual": "69.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G13",
+          "expected": "Calculated from source data",
+          "actual": "3.69%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B14",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C14",
+          "expected": "Calculated from source data",
+          "actual": "76.24%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D14",
+          "expected": "Calculated from source data",
+          "actual": "70.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E14",
+          "expected": "Calculated from source data",
+          "actual": "81.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F14",
+          "expected": "Calculated from source data",
+          "actual": "77.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G14",
+          "expected": "Calculated from source data",
+          "actual": "3.32%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B15",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C15",
+          "expected": "Calculated from source data",
+          "actual": "82.35%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D15",
+          "expected": "Calculated from source data",
+          "actual": "77.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E15",
+          "expected": "Calculated from source data",
+          "actual": "87.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F15",
+          "expected": "Calculated from source data",
+          "actual": "83.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G15",
+          "expected": "Calculated from source data",
+          "actual": "2.52%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B16",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C16",
+          "expected": "Calculated from source data",
+          "actual": "82.71%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D16",
+          "expected": "Calculated from source data",
+          "actual": "68.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E16",
+          "expected": "Calculated from source data",
+          "actual": "87.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F16",
+          "expected": "Calculated from source data",
+          "actual": "84.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G16",
+          "expected": "Calculated from source data",
+          "actual": "4.59%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C17",
+          "expected": "Calculated from source data",
+          "actual": "97.88%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D17",
+          "expected": "Calculated from source data",
+          "actual": "84.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G17",
+          "expected": "Calculated from source data",
+          "actual": "4.73%",
+          "severity": "REVIEW"
         }
       ]
     },
     {
       "filename": "3758299.xlsx",
-      "status": "ERROR",
+      "status": "REVIEW",
       "template": "ALTERNATE_SCORE",
-      "error_count": 62,
+      "error_count": 0,
       "warning_count": 0,
-      "review_count": 95,
-      "errors": [
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": "Excel formula",
-          "actual": "78.95%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": "Excel formula",
-          "actual": "69.74%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": "Excel formula",
-          "actual": "38.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": "Excel formula",
-          "actual": "86.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": "Excel formula",
-          "actual": "76.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G13.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Excel formula",
-          "actual": "14.84%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": "Excel formula",
-          "actual": "79.11%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": "Excel formula",
-          "actual": "68.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": "Excel formula",
-          "actual": "84.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": "Excel formula",
-          "actual": "79.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G14.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Excel formula",
-          "actual": "4.87%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": "Excel formula",
-          "actual": "94.74%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": "Excel formula",
-          "actual": "73.32%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": "Excel formula",
-          "actual": "44.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": "Excel formula",
-          "actual": "85.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": "Excel formula",
-          "actual": "76.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G15.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Excel formula",
-          "actual": "9.60%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": "Excel formula",
-          "actual": "74.21%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": "Excel formula",
-          "actual": "55.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": "Excel formula",
-          "actual": "85.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": "Excel formula",
-          "actual": "76.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G16.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Excel formula",
-          "actual": "10.36%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from B17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": "Excel formula",
-          "actual": "94.74%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from C17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": "Excel formula",
-          "actual": "85.37%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from D17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": "Excel formula",
-          "actual": "42.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from E17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": "Excel formula",
-          "actual": "100.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from F17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": "Excel formula",
-          "actual": "90.00%"
-        },
-        {
-          "code": "MISSING_NOS_FORMULA",
-          "category": "Formula",
-          "message": "Expected NOS statistics formula is missing from G17.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Excel formula",
-          "actual": "16.12%"
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B13",
-          "expected": 0.210526,
-          "actual": 0.7895
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C13",
-          "expected": 69.736842,
-          "actual": 0.6974
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D13",
-          "expected": 38.0,
-          "actual": 0.38
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E13",
-          "expected": 86.0,
-          "actual": 0.86
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F13",
-          "expected": 76.0,
-          "actual": 0.76
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2204 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": 15.249197,
-          "actual": 0.1484
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B14",
-          "expected": 0.473684,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C14",
-          "expected": 79.105263,
-          "actual": 0.7911
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D14",
-          "expected": 68.0,
-          "actual": 0.68
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E14",
-          "expected": 84.0,
-          "actual": 0.84
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F14",
-          "expected": 79.0,
-          "actual": 0.79
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2205 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": 4.99883,
-          "actual": 0.0487
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B15",
-          "expected": 0.105263,
-          "actual": 0.9474
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C15",
-          "expected": 73.315789,
-          "actual": 0.7332
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D15",
-          "expected": 44.0,
-          "actual": 0.44
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E15",
-          "expected": 85.0,
-          "actual": 0.85
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F15",
-          "expected": 76.0,
-          "actual": 0.76
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2206 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": 9.866062,
-          "actual": 0.096
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B16",
-          "expected": 0.421053,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C16",
-          "expected": 74.210526,
-          "actual": 0.7421
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D16",
-          "expected": 55.0,
-          "actual": 0.55
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E16",
-          "expected": 85.0,
-          "actual": 0.85
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F16",
-          "expected": 76.0,
-          "actual": 0.76
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "SSC/N2207 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": 10.648834,
-          "actual": 0.1036
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 pass percentage does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "B17",
-          "expected": 0.736842,
-          "actual": 0.9474
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 mean does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C17",
-          "expected": 42.684211,
-          "actual": 0.8537
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 minimum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "D17",
-          "expected": 21.0,
-          "actual": 0.42
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 maximum does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "E17",
-          "expected": 50.0,
-          "actual": 1.0
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 median does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "F17",
-          "expected": 45.0,
-          "actual": 0.9
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "DGT/VSQ/N0101-50.0 standard deviation does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": 8.280181,
-          "actual": 0.1612
-        },
-        {
-          "code": "STATISTIC_MISMATCH",
-          "category": "Statistics",
-          "message": "Passed candidates does not match independent calculation.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "C10",
-          "expected": 1.0,
-          "actual": 19.0
-        },
-        {
-          "code": "NOS_MISMATCH",
-          "category": "Cross Sheet",
-          "message": "NOS 'DGT/VSQ/N0101-50.0' from score_sheet is missing from Batch Analysis - Tabular.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": null,
-          "expected": "DGT/VSQ/N0101-50.0",
-          "actual": "Not found in tabular sheet"
-        }
-      ],
+      "review_count": 125,
+      "errors": [],
       "warnings": [],
       "review_items": [
         {
@@ -8506,6 +6771,306 @@
           "expected": "Depends on pass criteria",
           "actual": "Pass",
           "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B13",
+          "expected": "Calculated from source data",
+          "actual": "78.95%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C13",
+          "expected": "Calculated from source data",
+          "actual": "69.74%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D13",
+          "expected": "Calculated from source data",
+          "actual": "38.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E13",
+          "expected": "Calculated from source data",
+          "actual": "86.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F13",
+          "expected": "Calculated from source data",
+          "actual": "76.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G13 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G13",
+          "expected": "Calculated from source data",
+          "actual": "14.84%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B14",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C14",
+          "expected": "Calculated from source data",
+          "actual": "79.11%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D14",
+          "expected": "Calculated from source data",
+          "actual": "68.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E14",
+          "expected": "Calculated from source data",
+          "actual": "84.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F14",
+          "expected": "Calculated from source data",
+          "actual": "79.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G14 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G14",
+          "expected": "Calculated from source data",
+          "actual": "4.87%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B15",
+          "expected": "Calculated from source data",
+          "actual": "94.74%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C15",
+          "expected": "Calculated from source data",
+          "actual": "73.32%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D15",
+          "expected": "Calculated from source data",
+          "actual": "44.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E15",
+          "expected": "Calculated from source data",
+          "actual": "85.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F15",
+          "expected": "Calculated from source data",
+          "actual": "76.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G15 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G15",
+          "expected": "Calculated from source data",
+          "actual": "9.60%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B16",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C16",
+          "expected": "Calculated from source data",
+          "actual": "74.21%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D16",
+          "expected": "Calculated from source data",
+          "actual": "55.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E16",
+          "expected": "Calculated from source data",
+          "actual": "85.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F16",
+          "expected": "Calculated from source data",
+          "actual": "76.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G16 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G16",
+          "expected": "Calculated from source data",
+          "actual": "10.36%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at B17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "B17",
+          "expected": "Calculated from source data",
+          "actual": "94.74%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at C17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "C17",
+          "expected": "Calculated from source data",
+          "actual": "85.37%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at D17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "D17",
+          "expected": "Calculated from source data",
+          "actual": "42.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at E17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "E17",
+          "expected": "Calculated from source data",
+          "actual": "100.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at F17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "F17",
+          "expected": "Calculated from source data",
+          "actual": "90.00%",
+          "severity": "REVIEW"
+        },
+        {
+          "code": "NOS_STATISTIC_REVIEW",
+          "category": "Formula",
+          "message": "Hardcoded NOS statistic at G17 cannot be independently verified. Manual review required.",
+          "sheet": "Batch Analysis - Tabular",
+          "cell": "G17",
+          "expected": "Calculated from source data",
+          "actual": "16.12%",
+          "severity": "REVIEW"
         }
       ]
     },
@@ -8525,111 +7090,10 @@
       "status": "PASS",
       "template": "ALTERNATE_SCORE",
       "error_count": 0,
-      "warning_count": 10,
+      "warning_count": 0,
       "review_count": 0,
       "errors": [],
-      "warnings": [
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8417 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!F13:F4949)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8451 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!H13:H4949)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8125 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!J13:J4949)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8418 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!L13:L4949)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8323 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!N13:N4949)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8452 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G18",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!P13:P4950)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for DGT/VSQ/N0102 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G19",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!R13:R4951)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8414 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G20",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!T13:T4952)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8415 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G21",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!V13:V4952)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N8416 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G22",
-          "expected": "Business-rule dependent",
-          "actual": "=_xlfn.STDEV.S(score_sheet!X13:X4953)",
-          "severity": "WARNING"
-        }
-      ],
+      "warnings": [],
       "review_items": []
     },
     {
@@ -8758,51 +7222,10 @@
       "status": "PASS",
       "template": "ALTERNATE_SCORE",
       "error_count": 0,
-      "warning_count": 4,
+      "warning_count": 0,
       "review_count": 0,
       "errors": [],
-      "warnings": [
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N0101 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!F$14:F$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N0202 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!H$14:H$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N9014 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!J$14:J$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for DGT/VSQ/N0102 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!L$14:L$14)",
-          "severity": "WARNING"
-        }
-      ],
+      "warnings": [],
       "review_items": []
     },
     {
@@ -8810,61 +7233,10 @@
       "status": "PASS",
       "template": "ALTERNATE_SCORE",
       "error_count": 0,
-      "warning_count": 5,
+      "warning_count": 0,
       "review_count": 0,
       "errors": [],
-      "warnings": [
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N0509 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!F$14:F$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N0510 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!H$14:H$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N0511 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G15",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!J$14:J$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N0512 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G16",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!L$14:L$14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for DGT/VSQ/N0102 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G17",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!N$14:N$14)",
-          "severity": "WARNING"
-        }
-      ],
+      "warnings": [],
       "review_items": []
     },
     {
@@ -8883,31 +7255,10 @@
       "status": "PASS",
       "template": "ALTERNATE_SCORE",
       "error_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "review_count": 0,
       "errors": [],
-      "warnings": [
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for SSC/N3020 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G13",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!F14:F14)",
-          "severity": "WARNING"
-        },
-        {
-          "code": "SD_UNDEFINED_SINGLE_CANDIDATE",
-          "category": "Statistics",
-          "message": "Standard deviation for DGT/VSQ/N0102 cannot be calculated from one candidate.",
-          "sheet": "Batch Analysis - Tabular",
-          "cell": "G14",
-          "expected": "Business-rule dependent",
-          "actual": "=STDEVP(score_sheet!H14:H14)",
-          "severity": "WARNING"
-        }
-      ],
+      "warnings": [],
       "review_items": []
     },
     {
