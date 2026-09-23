@@ -5,7 +5,7 @@ import FileDetailsDrawer from "../components/common/FileDetailsDrawer";
 
 function ToBeRechecked() {
   const [reviewState, setReviewState] = useState<ReviewStateResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<ReviewStateFile | null>(null);
 
@@ -23,6 +23,7 @@ function ToBeRechecked() {
     }
   }, []);
 
+  // Load on mount
   useEffect(() => {
     loadReviewState();
   }, [loadReviewState]);

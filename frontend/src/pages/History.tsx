@@ -5,7 +5,7 @@ import FileDetailsDrawer from "../components/common/FileDetailsDrawer";
 
 function History() {
   const [history, setHistory] = useState<HistoryResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<"ALL" | "PASS" | "ERROR" | "REVIEW">("ALL");
@@ -25,6 +25,7 @@ function History() {
     }
   }, []);
 
+  // Load on mount
   useEffect(() => {
     loadHistory();
   }, [loadHistory]);

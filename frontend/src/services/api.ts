@@ -12,23 +12,37 @@ export async function validateFiles(
     form.append("files", file);
   });
 
-  const response = await fetch(
-    `${API_BASE}/validate`,
-    {
-      method: "POST",
-      body: form,
-    }
-  );
+  console.log(`Sending ${files.length} files to ${API_BASE}/validate`);
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("API Error Response:", errorText);
-    throw new Error(
-      `Validation failed (${response.status}): ${errorText}`
+  try {
+    const response = await fetch(
+      `${API_BASE}/validate`,
+      {
+        method: "POST",
+        body: form,
+      }
     );
-  }
 
-  return response.json();
+    console.log(`Response status: ${response.status}`);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("API Error Response:", errorText);
+      throw new Error(
+        `Validation failed (${response.status}): ${errorText}`
+      );
+    }
+
+    const result = await response.json();
+    console.log("Validation result:", result);
+    return result;
+  } catch (err) {
+    console.error("Fetch error:", err);
+    if (err instanceof TypeError && err.message === "Failed to fetch") {
+      throw new Error("Cannot connect to backend server. Please ensure the backend is running at http://127.0.0.1:8001");
+    }
+    throw err;
+  }
 }
 
 export async function getHistory(): Promise<HistoryResponse> {
