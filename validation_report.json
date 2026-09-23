@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-23T02:11:44.515215",
+  "timestamp": "2026-09-23T12:19:03.473918",
   "summary": {
     "total_files": 38,
     "pass_count": 31,
@@ -28,7 +28,14 @@
           "actual": "Female",
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 1,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "260120260870_RESULT.xlsx",
@@ -39,7 +46,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "3527841.xlsx",
@@ -651,7 +659,14 @@
           "actual": 0.06619580090890216,
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 60,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "3635115.xlsx",
@@ -1963,7 +1978,14 @@
           "actual": "2.40%",
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 130,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "3700984.xlsx",
@@ -1974,7 +1996,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "3701092.xlsx",
@@ -3486,7 +3509,14 @@
           "actual": "11.21%",
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 150,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "3701897.xlsx",
@@ -4648,7 +4678,14 @@
           "actual": "7.17%",
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 115,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "3757433.xlsx",
@@ -5810,7 +5847,14 @@
           "actual": "4.73%",
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 115,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "3758299.xlsx",
@@ -7072,7 +7116,14 @@
           "actual": "16.12%",
           "severity": "REVIEW"
         }
-      ]
+      ],
+      "ai_review": {
+        "enabled": false,
+        "classifications": [],
+        "total_review_items": 125,
+        "successfully_classified": 0,
+        "failed_classifications": 0
+      }
     },
     {
       "filename": "3790631.xlsx",
@@ -7083,7 +7134,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "840320260872_RESULT.xlsx",
@@ -7094,7 +7146,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3720786.xlsx",
@@ -7105,7 +7158,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3733387.xlsx",
@@ -7116,7 +7170,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3739369.xlsx",
@@ -7127,7 +7182,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3758305.xlsx",
@@ -7138,7 +7194,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3758307.xlsx",
@@ -7149,7 +7206,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3763133.xlsx",
@@ -7160,7 +7218,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3785734.xlsx",
@@ -7171,7 +7230,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3786125.xlsx",
@@ -7182,7 +7242,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3790062.xlsx",
@@ -7193,7 +7254,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3792921.xlsx",
@@ -7204,7 +7266,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_3792922.xlsx",
@@ -7215,7 +7278,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR010120260085.xlsx",
@@ -7226,7 +7290,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR051020269474.xlsx",
@@ -7237,7 +7302,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR221020260007.xlsx",
@@ -7248,7 +7314,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR221020269885.xlsx",
@@ -7259,7 +7326,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR221120269999.xlsx",
@@ -7270,7 +7338,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR221220260021.xlsx",
@@ -7281,7 +7350,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR221220269824(1).xlsx",
@@ -7292,7 +7362,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_APPR221220269825.xlsx",
@@ -7303,7 +7374,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_BVoC050120260117.xlsx",
@@ -7314,7 +7386,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_BVoC050120260119.xlsx",
@@ -7325,7 +7398,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_BVoC810820269837.xlsx",
@@ -7336,7 +7410,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_TPA0221220260179.xlsx",
@@ -7347,7 +7422,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_TPA0221220269705.xlsx",
@@ -7358,7 +7434,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_TPA0221220269706.xlsx",
@@ -7369,7 +7446,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_TPA0221220269722.xlsx",
@@ -7380,7 +7458,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     },
     {
       "filename": "Result Sheet_TPA0221220269724.xlsx",
@@ -7391,7 +7470,8 @@
       "review_count": 0,
       "errors": [],
       "warnings": [],
-      "review_items": []
+      "review_items": [],
+      "ai_review": null
     }
   ]
 }

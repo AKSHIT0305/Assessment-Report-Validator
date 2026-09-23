@@ -160,7 +160,8 @@ async def validate(
         # --------------------------------------------------
 
         validation_result = validator.validate(
-            destination
+            destination,
+            filename=file.filename
         )
 
         # Save to history
@@ -173,7 +174,8 @@ async def validate(
             "error_count": len(validation_result.get("errors", [])),
             "review_count": len(validation_result.get("review_items", [])),
             "validation_result": validation_result,
-            "review_state": "PENDING" if validation_result["status"] in ["REVIEW", "ERROR"] else "VERIFIED"
+            "review_state": "PENDING" if validation_result["status"] in ["REVIEW", "ERROR"] else "VERIFIED",
+            "ai_review": validation_result.get("ai_review")
         }
         history.append(history_entry)
         save_history(history)

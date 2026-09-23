@@ -1,5 +1,29 @@
 import React from "react";
-import type { HistoryRecord, ReviewStateFile, FileValidationResult } from "../types/validation";
+import type { HistoryRecord, ReviewStateFile, FileValidationResult, AIReviewSummary, ReviewClassification } from "../types/validation";
+
+// Helper function to format classification label
+const formatClassificationLabel = (classification: ReviewClassification): string => {
+  const labels: Record<ReviewClassification, string> = {
+    likely_valid: "Likely Valid",
+    likely_issue: "Likely Issue",
+    formatting_variation: "Formatting Variation",
+    unverifiable: "Unverifiable",
+    needs_human_review: "Needs Human Review",
+  };
+  return labels[classification] || classification;
+};
+
+// Helper function to get classification color
+const getClassificationColor = (classification: ReviewClassification): string => {
+  const colors: Record<ReviewClassification, string> = {
+    likely_valid: "text-green-600 bg-green-50",
+    likely_issue: "text-red-600 bg-red-50",
+    formatting_variation: "text-blue-600 bg-blue-50",
+    unverifiable: "text-gray-600 bg-gray-50",
+    needs_human_review: "text-yellow-600 bg-yellow-50",
+  };
+  return colors[classification] || "text-gray-600 bg-gray-50";
+};
 
 type FileDetailsDrawerProps = {
   file: HistoryRecord | ReviewStateFile | FileValidationResult;
@@ -15,6 +39,7 @@ function FileDetailsDrawer({ file, onClose, onMarkVerified, onMarkIncorrect, sho
   const errors = validationResult.errors || [];
   const reviewItems = validationResult.review_items || [];
   const warnings = validationResult.warnings || [];
+  const aiReview = validationResult.ai_review;
   const filename = "filename" in file ? file.filename : file.filename;
   const status = "status" in file ? file.status : file.status;
   const template = "template" in file ? file.template : file.template;
@@ -130,6 +155,77 @@ function FileDetailsDrawer({ file, onClose, onMarkVerified, onMarkIncorrect, sho
                     ... and {reviewItems.length - 10} more review items
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* AI Assessment */}
+          {aiReview && aiReview.enabled && (
+            <div className="mb-6">
+              <h4 className="font-semibold text-gray-800 mb-3">AI Assessment</h4>
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-semibold text-purple-700 uppercase tracking-wide">
+                    AI-Powered Classification
+                  </span>
+                  {aiReview.successfully_classified > 0 && (
+                    <span className="text-xs text-purple-600">
+                      ({aiReview.successfully_classified}/{aiReview.total_review_items} classified)
+                    </span>
+                  )}
+                </div>
+
+                {aiReview.classifications.length > 0 && (
+                  <div className="space-y-3">
+                    {aiReview.classifications.map((classification, idx) => (
+                      <div key={idx} className="bg-white rounded p-3 border border-purple-100">
+                        {classification.classification ? (
+                          <>
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className={`px-2 py-0.5 rounded text-xs font-medium ${getClassificationColor(classification.classification)}`}>
+                                {formatClassificationLabel(classification.classification)}
+                              </span>
+                              {classification.confidence && (
+                                <span className="text-xs text-gray-600">
+                                  {Math.round(classification.confidence * 100)}% confidence
+                                </span>
+                              )}
+                              {classification.model_used && (
+                                <span className="text-xs text-gray-500">
+                                  via {classification.model_used}
+                                </span>
+                              )}
+                            </div>
+                            {classification.reasoning && (
+                              <div className="text-gray-700 text-sm mb-2">
+                                {classification.reasoning}
+                              </div>
+                            )}
+                            {classification.suggested_action && (
+                              <div className="text-gray-600 text-sm italic">
+                                💡 {classification.suggested_action}
+                              </div>
+                            )}
+                          </>
+                        ) : classification.error ? (
+                          <div className="text-sm text-red-600">
+                            Classification failed: {classification.error}
+                          </div>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {aiReview.failed_classifications > 0 && (
+                  <div className="text-sm text-orange-600 mt-3">
+                    {aiReview.failed_classifications} item(s) could not be classified
+                  </div>
+                )}
+
+                <div className="text-xs text-gray-500 mt-3 pt-3 border-t border-purple-200">
+                  ⚠️ This AI assessment is for informational purposes only. The deterministic validation result remains authoritative. Human verification is still required.
+                </div>
               </div>
             </div>
           )}

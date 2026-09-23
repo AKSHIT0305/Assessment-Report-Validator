@@ -9,6 +9,26 @@ export type ValidationIssue = {
   severity?: "ERROR" | "WARNING" | "REVIEW";
 };
 
+export type ReviewClassification = "likely_valid" | "likely_issue" | "formatting_variation" | "unverifiable" | "needs_human_review";
+
+export type AIReviewClassification = {
+  classification?: ReviewClassification;
+  confidence?: number;
+  reasoning?: string;
+  suggested_action?: string;
+  model_used?: string;
+  latency_ms?: number;
+  error?: string;
+};
+
+export type AIReviewSummary = {
+  enabled: boolean;
+  classifications: AIReviewClassification[];
+  total_review_items: number;
+  successfully_classified: number;
+  failed_classifications: number;
+};
+
 export type FileValidationResult = {
   filename: string;
   status: "PASS" | "ERROR" | "REVIEW";
@@ -16,6 +36,7 @@ export type FileValidationResult = {
   errors: ValidationIssue[];
   warnings: ValidationIssue[];
   review_items?: ValidationIssue[];
+  ai_review?: AIReviewSummary;
 };
 
 export type ValidationSummary = {
@@ -48,6 +69,7 @@ export type HistoryRecord = {
   review_count: number;
   validation_result: FileValidationResult;
   review_state: "PENDING" | "VERIFIED" | "INCORRECT";
+  ai_review?: AIReviewSummary;
 };
 
 export type HistoryResponse = {
@@ -64,6 +86,7 @@ export type ReviewStateFile = {
   review_count: number;
   review_state: "PENDING" | "VERIFIED" | "INCORRECT";
   validation_result: FileValidationResult;
+  ai_review?: AIReviewSummary;
 };
 
 export type ReviewStateResponse = {

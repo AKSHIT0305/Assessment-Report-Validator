@@ -41,7 +41,11 @@ def main():
         print(f"\nValidating: {file_path.name}")
         
         try:
-            result = validator.validate(file_path)
+            result = validator.validate(file_path, filename=file_path.name)
+            ai_review_data = None
+            if result.get("ai_review"):
+                ai_review_data = result["ai_review"].model_dump() if hasattr(result["ai_review"], "model_dump") else result["ai_review"]
+            
             results.append({
                 "filename": file_path.name,
                 "status": result["status"],
@@ -52,6 +56,7 @@ def main():
                 "errors": result.get("errors", []),
                 "warnings": result.get("warnings", []),
                 "review_items": result.get("review_items", []),
+                "ai_review": ai_review_data,
             })
             
             if result["status"] == "PASS":
